@@ -14,15 +14,29 @@ namespace UIAssignment2
     {
 
         public CustomerForm parent;
+        public string purpose; //add or edit
 
         public InvoiceForm()
         {
             InitializeComponent();
         }
 
+
+
         private void button2_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        private void InvoiceForm_Load(object sender, EventArgs e)
+        {
+            //tbInvoiceNum.Text = ((CustomerForm)this.Owner).InvoiceToSearch;
+           
+            if (purpose.Equals("Edit Invoice"))
+            {
+                tbInvoiceNum.Text = parent.InvoiceToSearch;
+            }
+
         }
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comBoxState = new System.Windows.Forms.ComboBox();
             this.txtBoxPhone = new System.Windows.Forms.TextBox();
             this.txtBoxPostCode = new System.Windows.Forms.TextBox();
             this.txtBoxSuburb = new System.Windows.Forms.TextBox();
@@ -48,32 +47,25 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbInvoiceNum = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tbSearch = new System.Windows.Forms.TextBox();
             this.lbCustomers = new System.Windows.Forms.ListBox();
             this.gbInvoiceDetails = new System.Windows.Forms.GroupBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblPaymentStatus = new System.Windows.Forms.Label();
+            this.tbTotalInvoiceCost = new System.Windows.Forms.TextBox();
+            this.lblTotalInvoiceCost = new System.Windows.Forms.Label();
+            this.dgInvoiceDetails = new System.Windows.Forms.DataGridView();
             this.btnAddInvoice = new System.Windows.Forms.Button();
             this.btnEditInvoice = new System.Windows.Forms.Button();
             this.btnDeleteInvoice = new System.Windows.Forms.Button();
-            this.dgInvoiceDetails = new System.Windows.Forms.DataGridView();
-            this.lblTotalInvoiceCost = new System.Windows.Forms.Label();
-            this.tbTotalInvoiceCost = new System.Windows.Forms.TextBox();
-            this.lblPaymentStatus = new System.Windows.Forms.Label();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.tbSearch = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.txtBoxState = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.gbInvoiceDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoiceDetails)).BeginInit();
             this.SuspendLayout();
-            // 
-            // comBoxState
-            // 
-            this.comBoxState.FormattingEnabled = true;
-            this.comBoxState.Location = new System.Drawing.Point(153, 190);
-            this.comBoxState.Name = "comBoxState";
-            this.comBoxState.Size = new System.Drawing.Size(100, 21);
-            this.comBoxState.TabIndex = 32;
             // 
             // txtBoxPhone
             // 
@@ -199,7 +191,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comBoxState);
+            this.groupBox1.Controls.Add(this.txtBoxState);
             this.groupBox1.Controls.Add(this.txtBoxPhone);
             this.groupBox1.Controls.Add(this.txtBoxPostCode);
             this.groupBox1.Controls.Add(this.txtBoxSuburb);
@@ -253,6 +245,23 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Customers";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(21, 36);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(81, 13);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Filter Customers";
+            // 
+            // tbSearch
+            // 
+            this.tbSearch.Location = new System.Drawing.Point(21, 52);
+            this.tbSearch.Name = "tbSearch";
+            this.tbSearch.Size = new System.Drawing.Size(115, 20);
+            this.tbSearch.TabIndex = 1;
+            this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
+            // 
             // lbCustomers
             // 
             this.lbCustomers.FormattingEnabled = true;
@@ -276,6 +285,57 @@
             this.gbInvoiceDetails.TabStop = false;
             this.gbInvoiceDetails.Text = "Invoice Details";
             // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(117, 177);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(47, 13);
+            this.lblStatus.TabIndex = 45;
+            this.lblStatus.Text = "lblStatus";
+            // 
+            // lblPaymentStatus
+            // 
+            this.lblPaymentStatus.AutoSize = true;
+            this.lblPaymentStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaymentStatus.Location = new System.Drawing.Point(21, 177);
+            this.lblPaymentStatus.Name = "lblPaymentStatus";
+            this.lblPaymentStatus.Size = new System.Drawing.Size(99, 13);
+            this.lblPaymentStatus.TabIndex = 44;
+            this.lblPaymentStatus.Text = "Payment Status:";
+            // 
+            // tbTotalInvoiceCost
+            // 
+            this.tbTotalInvoiceCost.Location = new System.Drawing.Point(590, 173);
+            this.tbTotalInvoiceCost.Name = "tbTotalInvoiceCost";
+            this.tbTotalInvoiceCost.ReadOnly = true;
+            this.tbTotalInvoiceCost.Size = new System.Drawing.Size(71, 20);
+            this.tbTotalInvoiceCost.TabIndex = 43;
+            this.tbTotalInvoiceCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblTotalInvoiceCost
+            // 
+            this.lblTotalInvoiceCost.AutoSize = true;
+            this.lblTotalInvoiceCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalInvoiceCost.Location = new System.Drawing.Point(471, 177);
+            this.lblTotalInvoiceCost.Name = "lblTotalInvoiceCost";
+            this.lblTotalInvoiceCost.Size = new System.Drawing.Size(115, 13);
+            this.lblTotalInvoiceCost.TabIndex = 42;
+            this.lblTotalInvoiceCost.Text = "Total Invoice Cost:";
+            // 
+            // dgInvoiceDetails
+            // 
+            this.dgInvoiceDetails.AllowUserToAddRows = false;
+            this.dgInvoiceDetails.AllowUserToDeleteRows = false;
+            this.dgInvoiceDetails.AllowUserToResizeColumns = false;
+            this.dgInvoiceDetails.AllowUserToResizeRows = false;
+            this.dgInvoiceDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgInvoiceDetails.Location = new System.Drawing.Point(21, 27);
+            this.dgInvoiceDetails.Name = "dgInvoiceDetails";
+            this.dgInvoiceDetails.ReadOnly = true;
+            this.dgInvoiceDetails.Size = new System.Drawing.Size(640, 130);
+            this.dgInvoiceDetails.TabIndex = 42;
+            // 
             // btnAddInvoice
             // 
             this.btnAddInvoice.Location = new System.Drawing.Point(455, 343);
@@ -294,6 +354,7 @@
             this.btnEditInvoice.TabIndex = 40;
             this.btnEditInvoice.Text = "Edit Invoice";
             this.btnEditInvoice.UseVisualStyleBackColor = true;
+            this.btnEditInvoice.Click += new System.EventHandler(this.btnEditInvoice_Click);
             // 
             // btnDeleteInvoice
             // 
@@ -304,73 +365,12 @@
             this.btnDeleteInvoice.Text = "Delete Invoice";
             this.btnDeleteInvoice.UseVisualStyleBackColor = true;
             // 
-            // dgInvoiceDetails
+            // txtBoxState
             // 
-            this.dgInvoiceDetails.AllowUserToAddRows = false;
-            this.dgInvoiceDetails.AllowUserToDeleteRows = false;
-            this.dgInvoiceDetails.AllowUserToResizeColumns = false;
-            this.dgInvoiceDetails.AllowUserToResizeRows = false;
-            this.dgInvoiceDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgInvoiceDetails.Location = new System.Drawing.Point(21, 27);
-            this.dgInvoiceDetails.Name = "dgInvoiceDetails";
-            this.dgInvoiceDetails.ReadOnly = true;
-            this.dgInvoiceDetails.Size = new System.Drawing.Size(640, 130);
-            this.dgInvoiceDetails.TabIndex = 42;
-            // 
-            // lblTotalInvoiceCost
-            // 
-            this.lblTotalInvoiceCost.AutoSize = true;
-            this.lblTotalInvoiceCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalInvoiceCost.Location = new System.Drawing.Point(471, 177);
-            this.lblTotalInvoiceCost.Name = "lblTotalInvoiceCost";
-            this.lblTotalInvoiceCost.Size = new System.Drawing.Size(115, 13);
-            this.lblTotalInvoiceCost.TabIndex = 42;
-            this.lblTotalInvoiceCost.Text = "Total Invoice Cost:";
-            // 
-            // tbTotalInvoiceCost
-            // 
-            this.tbTotalInvoiceCost.Location = new System.Drawing.Point(590, 173);
-            this.tbTotalInvoiceCost.Name = "tbTotalInvoiceCost";
-            this.tbTotalInvoiceCost.ReadOnly = true;
-            this.tbTotalInvoiceCost.Size = new System.Drawing.Size(71, 20);
-            this.tbTotalInvoiceCost.TabIndex = 43;
-            this.tbTotalInvoiceCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lblPaymentStatus
-            // 
-            this.lblPaymentStatus.AutoSize = true;
-            this.lblPaymentStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaymentStatus.Location = new System.Drawing.Point(21, 177);
-            this.lblPaymentStatus.Name = "lblPaymentStatus";
-            this.lblPaymentStatus.Size = new System.Drawing.Size(99, 13);
-            this.lblPaymentStatus.TabIndex = 44;
-            this.lblPaymentStatus.Text = "Payment Status:";
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(117, 177);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(47, 13);
-            this.lblStatus.TabIndex = 45;
-            this.lblStatus.Text = "lblStatus";
-            // 
-            // tbSearch
-            // 
-            this.tbSearch.Location = new System.Drawing.Point(21, 52);
-            this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(115, 20);
-            this.tbSearch.TabIndex = 1;
-            this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 36);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(81, 13);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "Filter Customers";
+            this.txtBoxState.Location = new System.Drawing.Point(153, 190);
+            this.txtBoxState.Name = "txtBoxState";
+            this.txtBoxState.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxState.TabIndex = 32;
             // 
             // CustomerForm
             // 
@@ -404,7 +404,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comBoxState;
         private System.Windows.Forms.TextBox txtBoxPhone;
         private System.Windows.Forms.TextBox txtBoxPostCode;
         private System.Windows.Forms.TextBox txtBoxSuburb;
@@ -436,6 +435,7 @@
         private System.Windows.Forms.Label lblPaymentStatus;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox tbSearch;
+        private System.Windows.Forms.TextBox txtBoxState;
     }
 }
 

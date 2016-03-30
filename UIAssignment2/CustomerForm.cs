@@ -13,13 +13,28 @@ namespace UIAssignment2
     public partial class CustomerForm : Form
     {
         private List<Customer> customers;
+
+        private string invoiceToSearch;
+
+        public string InvoiceToSearch
+        {
+            get { return invoiceToSearch; }
+            set { invoiceToSearch = value; }
+        }
+        
+
         public CustomerForm()
         {
             InitializeComponent();
             customers = new List<Customer>();
             addTestData();
+
+          
+
         }
 
+
+        
 
         public void addTestData()
         {
@@ -152,21 +167,28 @@ namespace UIAssignment2
 
         private void fillCustomerDetails()
         {
-            string custToSearch = lbCustomers.SelectedValue.ToString();
-            currentSelectedCustomer = customers.Find(x => x.CustNum == custToSearch);
-
-            if (currentSelectedCustomer != null)
+            try
             {
-                txtBoxCustNum.Text = currentSelectedCustomer.CustNum;
-                txtBoxFirstName.Text = currentSelectedCustomer.CustFirstName;
-                txtBoxLastName.Text = currentSelectedCustomer.CustLastName;
-                txtBoxStreet.Text = currentSelectedCustomer.CustStreet;
-                txtBoxSuburb.Text = currentSelectedCustomer.CustSuburb;
-                comBoxState.Text = currentSelectedCustomer.CustState;
-                txtBoxPostCode.Text = currentSelectedCustomer.CustPostCode;
-                txtBoxPhone.Text = currentSelectedCustomer.CustContactNum;
+                string custToSearch = lbCustomers.SelectedValue.ToString();
+                currentSelectedCustomer = customers.Find(x => x.CustNum == custToSearch);
 
-                fillInvoiceList(currentSelectedCustomer);
+                if (currentSelectedCustomer != null)
+                {
+                    txtBoxCustNum.Text = currentSelectedCustomer.CustNum;
+                    txtBoxFirstName.Text = currentSelectedCustomer.CustFirstName;
+                    txtBoxLastName.Text = currentSelectedCustomer.CustLastName;
+                    txtBoxStreet.Text = currentSelectedCustomer.CustStreet;
+                    txtBoxSuburb.Text = currentSelectedCustomer.CustSuburb;
+                    txtBoxState.Text = currentSelectedCustomer.CustState;
+                    txtBoxPostCode.Text = currentSelectedCustomer.CustPostCode;
+                    txtBoxPhone.Text = currentSelectedCustomer.CustContactNum;
+
+                    fillInvoiceList(currentSelectedCustomer);
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
 
         }
@@ -212,11 +234,12 @@ namespace UIAssignment2
             return status;
         }
 
+        
         private void fillInvoiceDetails(Customer cust)
         {
             try
             {
-                string invoiceToSearch = lbInvoiceNum.SelectedItem.ToString();
+                invoiceToSearch = lbInvoiceNum.SelectedItem.ToString();
                 Invoice theInvoice = cust.invoices.Find(x => x.InvoiceNum == invoiceToSearch);               
                 List<Item> invItems = theInvoice.getItems();
 
@@ -244,12 +267,30 @@ namespace UIAssignment2
 
         }
 
+        public string getSelectedInvoiceNum()
+        {
+            try
+            {
+                Console.WriteLine("Invoice Num is " + invoiceToSearch);
+                
+                //return lbInvoiceNum.SelectedItem.ToString();
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return invoiceToSearch;
+        }
 
+        //add invoice handler
         private void button1_Click(object sender, EventArgs e)
         {
             InvoiceForm addInvoice = new InvoiceForm();
+
             addInvoice.parent = this;
+            addInvoice.purpose = (sender as Button).Text;
             addInvoice.ShowDialog();
+            //addInvoice.ShowDialog(this);
         }
 
         private void lbCustomers_SelectedIndexChanged(object sender, EventArgs e)
@@ -259,6 +300,7 @@ namespace UIAssignment2
 
         private void lbInvoiceNum_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //getSelectedInvoiceNum();
             fillInvoiceDetails(currentSelectedCustomer);
 
         }
@@ -268,6 +310,16 @@ namespace UIAssignment2
             DataView dvCustomers = dtCustomers.DefaultView;
             dvCustomers.RowFilter = "CustFirstName LIKE '%" + tbSearch.Text + "%'";
             fillCustomerDetails();
+        }
+
+        private void btnEditInvoice_Click(object sender, EventArgs e)
+        {
+            InvoiceForm editInvoiceForm = new InvoiceForm();
+            //editInvoiceForm.ShowDialog(this);
+            editInvoiceForm.parent = this;
+            editInvoiceForm.purpose = (sender as Button).Text;
+           // Console.WriteLine((sender as Button).Text);
+            editInvoiceForm.ShowDialog();
         }
 
        
