@@ -36,6 +36,7 @@ namespace UIAssignment2
             c1.invoices.Add(new Invoice("INV002", DateTime.Today));
             c1.invoices[1].addItem(new Item(1, "Monitor", "DELL 16:9 24inch", 350.00m, 2));
             c1.invoices[1].addItem(new Item(2, "Dock", "3xUSB HDMI", 200.00m, 2));
+            c1.invoices[1].PaidStatus = true;
 
             Customer c2 = new Customer("002",
                                        "Lena", "Funtseva",
@@ -59,13 +60,93 @@ namespace UIAssignment2
             customers.Add(c3);
 
             //set the datasource of the listbox to the arraylist of customers
-            lbCustomers.DataSource = customers;
+            lbCustomers.DataSource = getCustData();// customers;
             lbCustomers.DisplayMember = "CustFirstName"; 
             lbCustomers.ValueMember = "CustNum";
 
+
+
+            dgInvoiceDetails.AutoGenerateColumns = false;
+
+            addColumnstoTable();
+            
             fillCustomerDetails();
+
+            
             
         }
+
+        private DataTable dtCustomers;
+        private DataTable getCustData()
+        {
+            dtCustomers = new DataTable();
+            
+            dtCustomers.Columns.Add("CustFirstName");
+            dtCustomers.Columns.Add("CustNum");
+
+            foreach (Customer cust in customers)
+            {
+                var row = dtCustomers.NewRow();
+                row["CustFirstName"] = cust.CustFirstName;
+                row["CustNum"] = cust.CustNum;
+                dtCustomers.Rows.Add(row);
+            }
+
+           
+
+            return dtCustomers;
+
+        }
+
+        private void addColumnstoTable()
+        {
+            DataGridViewTextBoxColumn col1 = new DataGridViewTextBoxColumn();
+            col1.HeaderText = "Item Num";
+            col1.DataPropertyName = "ItemNum";
+            col1.Width = 80;
+            col1.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            col1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgInvoiceDetails.Columns.Add(col1);
+
+            DataGridViewTextBoxColumn col2 = new DataGridViewTextBoxColumn();
+            col2.HeaderText = "Name";
+            col2.DataPropertyName = "ItemName";
+            col2.Width = 117;
+            dgInvoiceDetails.Columns.Add(col2);
+
+            DataGridViewTextBoxColumn col3 = new DataGridViewTextBoxColumn();
+            col3.HeaderText = "Description";
+            col3.DataPropertyName = "ItemDesc";
+            col3.Width = 180;
+            dgInvoiceDetails.Columns.Add(col3);
+
+            DataGridViewTextBoxColumn col4 = new DataGridViewTextBoxColumn();
+            col4.HeaderText = "Cost";
+            col4.DataPropertyName = "ItemCost";
+            col4.Width = 80;
+            col4.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            col4.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgInvoiceDetails.Columns.Add(col4);
+
+            DataGridViewTextBoxColumn col5 = new DataGridViewTextBoxColumn();
+            col5.HeaderText = "Qty";
+            col5.DataPropertyName = "ItemQty";
+            col5.Width = 60;
+            col5.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            col5.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgInvoiceDetails.Columns.Add(col5);
+
+            DataGridViewTextBoxColumn col6 = new DataGridViewTextBoxColumn();
+            col6.HeaderText = "Total Cost";
+            col6.DataPropertyName = "TotalCost";
+            col6.Width = 80;
+            col6.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            col6.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgInvoiceDetails.Columns.Add(col6);
+                       
+            dgInvoiceDetails.ClearSelection();
+        }
+
 
         Customer currentSelectedCustomer;
 
@@ -102,15 +183,33 @@ namespace UIAssignment2
                 }
                 lbInvoiceNum.SelectedIndex = 0;
                 fillInvoiceDetails(cust);
+
             }
             else
             {
-                richInvoiceDetails.Clear();
+                dgInvoiceDetails.DataSource = null;
+                tbTotalInvoiceCost.Text = "";
+                
+            }
+        }
 
+        private string getPaymentStatus(Invoice inv)
+        {
+            string status;
+
+            if (inv.PaidStatus)
+            {
+                status = "Paid on " + inv.PaymentDate.ToShortDateString();
+                lblStatus.ForeColor = System.Drawing.Color.Green;
+            }
+            else
+            {
+                status = "Unpaid. Payment due on " + inv.PaymentDate.ToShortDateString();
+                lblStatus.ForeColor = System.Drawing.Color.Red;
+            
             }
 
-
-            
+            return status;
         }
 
         private void fillInvoiceDetails(Customer cust)
@@ -118,23 +217,26 @@ namespace UIAssignment2
             try
             {
                 string invoiceToSearch = lbInvoiceNum.SelectedItem.ToString();
-                string text = "";
+                Invoice theInvoice = cust.invoices.Find(x => x.InvoiceNum == invoiceToSearch);               
+                List<Item> invItems = theInvoice.getItems();
 
-                for (int i = 0; i < cust.invoices.Count; i++)
+                if (invItems.Count > 0)
                 {
-                    if (cust.invoices[i].InvoiceNum.Equals(invoiceToSearch))
-                    {
-                        List<Item> invItems = cust.invoices[i].getItems();
+                    var source = new BindingSource();
+                    source.DataSource = invItems;                    
+                    dgInvoiceDetails.DataSource = source;
+                    dgInvoiceDetails.ClearSelection();
 
-                        foreach (Item item in invItems)
-                        {
-                            text += item.ItemNum + "\t" + item.ItemName + "\t" + item.ItemDesc + "\t" + item.Qty + "\t" + item.ItemCost + "\n";
-                        }
+                    gbInvoiceDetails.Text = "Invoice Details for " + invoiceToSearch;
 
-                        richInvoiceDetails.Text = text;
-                    }
+                    lblStatus.Text = getPaymentStatus(theInvoice);
+                    tbTotalInvoiceCost.Text = theInvoice.TotalCost.ToString();
                 }
+                dgInvoiceDetails.Rows[0].Selected = false;
+                dgInvoiceDetails.ClearSelection();                            
+
             }
+
             catch (NullReferenceException ex)
             {
                 Console.WriteLine(ex.Message);
@@ -160,5 +262,14 @@ namespace UIAssignment2
             fillInvoiceDetails(currentSelectedCustomer);
 
         }
+
+        private void tbSearch_TextChanged(object sender, EventArgs e)
+        {
+            DataView dvCustomers = dtCustomers.DefaultView;
+            dvCustomers.RowFilter = "CustFirstName LIKE '%" + tbSearch.Text + "%'";
+            fillCustomerDetails();
+        }
+
+       
     }
 }

@@ -33,7 +33,7 @@ namespace UIAssignment2
         public void addItem(Item item)
         {
             this.items.Add(item);
-            TotalCost += item.ItemCost * item.Qty;
+            TotalCost += item.ItemCost * item.ItemQty;
 
         }
 
