@@ -18,7 +18,7 @@ namespace UIAssignment2
         private string custPostCode;
         private string custContactNum;
         private string custCompany;
-        public Invoice[] invoices;
+        public List<Invoice> invoices;
         private int invoiceCount;
 
         
@@ -33,8 +33,8 @@ namespace UIAssignment2
             this.CustPostCode = custPostCode;
             this.CustContactNum = custContactNum;
             this.CustCompany = custCompany;
-            this.invoiceCount = 1;
-            invoices = new Invoice[5];
+            this.invoiceCount = 0;
+            invoices = new List<Invoice>();
         }
 
         public int InvoiceCount

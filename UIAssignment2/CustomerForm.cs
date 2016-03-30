@@ -29,9 +29,13 @@ namespace UIAssignment2
                                         "349 Grand Prom", "Dianella", "WA", "6059",
                                         "0478220117",
                                         "Intekka");
-            c1.invoices[0] = new Invoice("INV001", DateTime.Today);
+            c1.invoices.Add(new Invoice("INV001", DateTime.Today));
             c1.invoices[0].addItem(new Item(1, "Mouse", "Wireless Mouse", 14.99m, 2));
             c1.invoices[0].addItem(new Item(2, "Macbook Pro", "i7 8Gb RAM 15-inch", 1450.00m, 1));
+
+            c1.invoices.Add(new Invoice("INV002", DateTime.Today));
+            c1.invoices[1].addItem(new Item(1, "Monitor", "DELL 16:9 24inch", 350.00m, 2));
+            c1.invoices[1].addItem(new Item(2, "Dock", "3xUSB HDMI", 200.00m, 2));
 
             Customer c2 = new Customer("002",
                                        "Lena", "Funtseva",
@@ -39,13 +43,20 @@ namespace UIAssignment2
                                        "0478221847",
                                        "Russki");
 
-            c2.invoices[0] = new Invoice("INV002", DateTime.Today);
+            c2.invoices.Add(new Invoice("INV003", DateTime.Today));
             c2.invoices[0].addItem(new Item(1, "Keyboard", "Wireless Keyboard", 34.99m, 1));
             c2.invoices[0].addItem(new Item(2, "USB Drive", "SanDisk 16GB", 59.00m, 2));
+
+            Customer c3 = new Customer("003",
+                                      "Tom", "Butler",
+                                      "4 Mill Lane", "East Perth", "WA", "6061",
+                                      "1512281438",
+                                      "Red Cross");
 
 
             customers.Add(c1);
             customers.Add(c2);
+            customers.Add(c3);
 
             //set the datasource of the listbox to the arraylist of customers
             lbCustomers.DataSource = customers;
@@ -83,14 +94,19 @@ namespace UIAssignment2
         {
             lbInvoiceNum.Items.Clear();
 
-            if (cust.InvoiceCount > 0)
+            if (cust.invoices.Count > 0)
             {
-                for (int i = 0; i < cust.InvoiceCount; i++)
+                for (int i = 0; i < cust.invoices.Count; i++)
                 {
                     lbInvoiceNum.Items.Add(cust.invoices[i].InvoiceNum);
                 }
-
+                lbInvoiceNum.SelectedIndex = 0;
                 fillInvoiceDetails(cust);
+            }
+            else
+            {
+                richInvoiceDetails.Clear();
+
             }
 
 
@@ -104,7 +120,7 @@ namespace UIAssignment2
                 string invoiceToSearch = lbInvoiceNum.SelectedItem.ToString();
                 string text = "";
 
-                for (int i = 0; i < cust.InvoiceCount; i++)
+                for (int i = 0; i < cust.invoices.Count; i++)
                 {
                     if (cust.invoices[i].InvoiceNum.Equals(invoiceToSearch))
                     {
