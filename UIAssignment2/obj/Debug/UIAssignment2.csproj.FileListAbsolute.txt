@@ -17,4 +17,4 @@ E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIA
 E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.csproj.GenerateResource.Cache
 E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.exe
 E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.pdb
-E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.Form1.resources
+E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.csprojResolveAssemblyReference.cache

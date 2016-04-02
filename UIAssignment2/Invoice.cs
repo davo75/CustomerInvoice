@@ -10,7 +10,9 @@ namespace UIAssignment2
     {
         private string invoiceNum;
         private bool paidStatus;
-        private List<Item> items;
+        private List<InvoiceItem> invoiceItems;
+
+       
         private DateTime paymentDate;
         private decimal totalCost;
 
@@ -20,8 +22,23 @@ namespace UIAssignment2
             this.PaymentDate = paymentDate;
             this.PaidStatus = false;
             this.TotalCost = 0.00m;
-            items = new List<Item>();
+            invoiceItems = new List<InvoiceItem>();
 
+        }
+
+        public Invoice(string invoiceNum, DateTime paymentDate, bool paymentStatus, decimal totalCost, List<InvoiceItem> items)
+        {
+            this.InvoiceNum = invoiceNum;
+            this.PaymentDate = paymentDate;
+            this.PaidStatus = paymentStatus;
+            this.TotalCost = totalCost;
+            invoiceItems = items;
+        }
+
+        internal List<InvoiceItem> InvoiceItems
+        {
+            get { return invoiceItems; }
+            set { invoiceItems = value; }
         }
 
         public decimal TotalCost
@@ -30,16 +47,16 @@ namespace UIAssignment2
             set { totalCost = value; }
         }
 
-        public void addItem(Item item)
+        public void addItem(Item item, int qty)
         {
-            this.items.Add(item);
-            TotalCost += item.ItemCost * item.ItemQty;
+            this.invoiceItems.Add(new InvoiceItem(item, qty));
+            TotalCost += item.ItemCost * qty;
 
         }
 
-        public List<Item> getItems()
+        public List<InvoiceItem> getItems()
         {
-            return this.items;
+            return invoiceItems;
         }
 
         public DateTime PaymentDate

@@ -19,7 +19,7 @@ namespace UIAssignment2
         private string custContactNum;
         private string custCompany;
         public List<Invoice> invoices;
-        private int invoiceCount;
+       
 
         
         public Customer(string custNum, string custFirstName, string custLastName, string custStreet, string custSuburb, string custState, string custPostCode, string custContactNum, string custCompany)
@@ -33,19 +33,15 @@ namespace UIAssignment2
             this.CustPostCode = custPostCode;
             this.CustContactNum = custContactNum;
             this.CustCompany = custCompany;
-            this.invoiceCount = 0;
+            
             invoices = new List<Invoice>();
         }
 
-        public int InvoiceCount
-        {
-            get { return invoiceCount; }
-            set { invoiceCount = value; }
-        }
         
 
         public void addInvoice(Invoice invoice)
         {
+            invoices.Add(invoice);
             
         }
 

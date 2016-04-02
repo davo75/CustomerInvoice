@@ -13,22 +13,18 @@ namespace UIAssignment2
         private string itemName;
         private string itemDesc;
         private decimal itemCost;
-        private int itemQty;
-        private decimal totalCost;
+        
+        
 
-        public Item(int itemNum, string itemName, string itemDesc, decimal itemCost, int qty)
+        public Item(int itemNum, string itemName, string itemDesc, decimal itemCost)
         {
             this.ItemNum = itemNum;
             this.ItemName = itemName;
             this.ItemDesc = itemDesc;
             this.ItemCost = itemCost;
-            this.ItemQty = qty;
+            
         }
 
-        public decimal TotalCost
-        {
-            get { return itemCost * itemQty; }
-        }
 
         public int ItemNum
         {
@@ -57,11 +53,7 @@ namespace UIAssignment2
             set { itemCost = value; }
         }
 
-        public int ItemQty
-        {
-            get { return itemQty; }
-            set { itemQty = value; }
-        }
+       
 
         
     }

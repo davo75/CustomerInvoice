@@ -12,9 +12,20 @@ namespace UIAssignment2
 {
     public partial class CustomerForm : Form
     {
-        private List<Customer> customers;
+        internal List<Customer> customers;
+        internal List<Item> products;
 
         private string invoiceToSearch;
+
+        private int invoiceNumThatWasEdited;
+
+        private int invoiceCount;
+
+        public int InvoiceCount
+        {
+            get { return invoiceCount; }
+            set { invoiceCount = value; }
+        }
 
         public string InvoiceToSearch
         {
@@ -28,16 +39,31 @@ namespace UIAssignment2
             InitializeComponent();
             customers = new List<Customer>();
             addTestData();
-
-          
-
+           
         }
 
+        public string getNewInvoiceNum()
+        {
+            return "INV00" + (invoiceCount+1);
+        }
 
         
 
+
         public void addTestData()
         {
+            invoiceCount = 0;
+
+            //create some product items
+            products = new List<Item>();
+
+            products.Add(new Item(1, "Mouse", "Wireless Mouse", 14.99m));
+            products.Add(new Item(2, "Macbook Pro", "i7 8Gb RAM 15-inch", 1450.00m));
+            products.Add(new Item(3, "Monitor", "DELL 16:9 24inch", 350.00m));
+            products.Add(new Item(4, "Dock", "USB HDMI DVI Dual Monitor", 200.00m));
+            products.Add(new Item(5, "Keyboard", "Wireless Keyboard", 34.99m));
+            products.Add(new Item(6, "USB Drive", "SanDisk 16GB", 59.00m));
+
 
             Customer c1 = new Customer("001",
                                         "Dave", "Pyle",
@@ -45,12 +71,14 @@ namespace UIAssignment2
                                         "0478220117",
                                         "Intekka");
             c1.invoices.Add(new Invoice("INV001", DateTime.Today));
-            c1.invoices[0].addItem(new Item(1, "Mouse", "Wireless Mouse", 14.99m, 2));
-            c1.invoices[0].addItem(new Item(2, "Macbook Pro", "i7 8Gb RAM 15-inch", 1450.00m, 1));
+            invoiceCount++;
+            c1.invoices[0].addItem(products[0],2);
+            c1.invoices[0].addItem(products[1],1);
 
             c1.invoices.Add(new Invoice("INV002", DateTime.Today));
-            c1.invoices[1].addItem(new Item(1, "Monitor", "DELL 16:9 24inch", 350.00m, 2));
-            c1.invoices[1].addItem(new Item(2, "Dock", "3xUSB HDMI", 200.00m, 2));
+            invoiceCount++;
+            c1.invoices[1].addItem(products[2],1);
+            c1.invoices[1].addItem(products[3],2);
             c1.invoices[1].PaidStatus = true;
 
             Customer c2 = new Customer("002",
@@ -60,8 +88,9 @@ namespace UIAssignment2
                                        "Russki");
 
             c2.invoices.Add(new Invoice("INV003", DateTime.Today));
-            c2.invoices[0].addItem(new Item(1, "Keyboard", "Wireless Keyboard", 34.99m, 1));
-            c2.invoices[0].addItem(new Item(2, "USB Drive", "SanDisk 16GB", 59.00m, 2));
+            invoiceCount++;
+            c2.invoices[0].addItem(products[4],3);
+            c2.invoices[0].addItem(products[5],4);
 
             Customer c3 = new Customer("003",
                                       "Tom", "Butler",
@@ -87,11 +116,14 @@ namespace UIAssignment2
             
             fillCustomerDetails();
 
-            
+            //Console.WriteLine(getNewInvoiceNum());
             
         }
 
+        
+
         private DataTable dtCustomers;
+
         private DataTable getCustData()
         {
             dtCustomers = new DataTable();
@@ -124,7 +156,7 @@ namespace UIAssignment2
             dgInvoiceDetails.Columns.Add(col1);
 
             DataGridViewTextBoxColumn col2 = new DataGridViewTextBoxColumn();
-            col2.HeaderText = "Name";
+            col2.HeaderText = "Item";
             col2.DataPropertyName = "ItemName";
             col2.Width = 117;
             dgInvoiceDetails.Columns.Add(col2);
@@ -163,7 +195,10 @@ namespace UIAssignment2
         }
 
 
-        Customer currentSelectedCustomer;
+        internal Customer currentSelectedCustomer;
+
+
+        
 
         private void fillCustomerDetails()
         {
@@ -175,6 +210,7 @@ namespace UIAssignment2
                 if (currentSelectedCustomer != null)
                 {
                     txtBoxCustNum.Text = currentSelectedCustomer.CustNum;
+                    txtBoxCompany.Text = currentSelectedCustomer.CustCompany;
                     txtBoxFirstName.Text = currentSelectedCustomer.CustFirstName;
                     txtBoxLastName.Text = currentSelectedCustomer.CustLastName;
                     txtBoxStreet.Text = currentSelectedCustomer.CustStreet;
@@ -199,6 +235,10 @@ namespace UIAssignment2
 
             if (cust.invoices.Count > 0)
             {
+                //invoice items so enable edit invoice and delete invoice buttons
+                btnEditInvoice.Enabled = true;
+                btnDeleteInvoice.Enabled = true;
+
                 for (int i = 0; i < cust.invoices.Count; i++)
                 {
                     lbInvoiceNum.Items.Add(cust.invoices[i].InvoiceNum);
@@ -211,9 +251,14 @@ namespace UIAssignment2
             {
                 dgInvoiceDetails.DataSource = null;
                 tbTotalInvoiceCost.Text = "";
+                //no invoice items so disable edit invoice and delete invoice buttons
+                btnEditInvoice.Enabled = false;
+                btnDeleteInvoice.Enabled = false;
                 
             }
         }
+
+
 
         private string getPaymentStatus(Invoice inv)
         {
@@ -234,29 +279,31 @@ namespace UIAssignment2
             return status;
         }
 
-        
         private void fillInvoiceDetails(Customer cust)
         {
             try
             {
                 invoiceToSearch = lbInvoiceNum.SelectedItem.ToString();
-                Invoice theInvoice = cust.invoices.Find(x => x.InvoiceNum == invoiceToSearch);               
-                List<Item> invItems = theInvoice.getItems();
+                Invoice theInvoice = cust.invoices.Find(x => x.InvoiceNum == invoiceToSearch);
+                List<InvoiceItem> invItems = theInvoice.getItems();
+
 
                 if (invItems.Count > 0)
                 {
+                    
                     var source = new BindingSource();
-                    source.DataSource = invItems;                    
+                    source.DataSource = invItems;
                     dgInvoiceDetails.DataSource = source;
                     dgInvoiceDetails.ClearSelection();
 
                     gbInvoiceDetails.Text = "Invoice Details for " + invoiceToSearch;
 
                     lblStatus.Text = getPaymentStatus(theInvoice);
-                    tbTotalInvoiceCost.Text = theInvoice.TotalCost.ToString();
+                    tbTotalInvoiceCost.Text = "$" + theInvoice.TotalCost.ToString();
                 }
+
                 dgInvoiceDetails.Rows[0].Selected = false;
-                dgInvoiceDetails.ClearSelection();                            
+                dgInvoiceDetails.ClearSelection();
 
             }
 
@@ -266,6 +313,7 @@ namespace UIAssignment2
             }
 
         }
+        
 
         public string getSelectedInvoiceNum()
         {
@@ -285,12 +333,34 @@ namespace UIAssignment2
         //add invoice handler
         private void button1_Click(object sender, EventArgs e)
         {
-            InvoiceForm addInvoice = new InvoiceForm();
-
-            addInvoice.parent = this;
-            addInvoice.purpose = (sender as Button).Text;
-            addInvoice.ShowDialog();
+            InvoiceForm addInvoiceForm = new InvoiceForm();
+            addInvoiceForm.FormClosed += new FormClosedEventHandler(addInvoiceForm_FormClosed);
+            addInvoiceForm.parent = this;
+            addInvoiceForm.purpose = (sender as Button).Text;
+            addInvoiceForm.ShowDialog();
             //addInvoice.ShowDialog(this);
+        }
+
+        //actions to do after Invoice dialog closes from adding new invoice
+        void addInvoiceForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //refresh the data
+            fillCustomerDetails();
+           
+            //set the selection to the newly created invoice number so its details are displayed
+            lbInvoiceNum.SetSelected(lbInvoiceNum.Items.Count - 1, true);
+
+        }
+
+        //actions to do after Invoice dialog closes from editing existing invoice
+        void editInvoiceForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //refresh the data
+            fillCustomerDetails();
+
+            lbInvoiceNum.SetSelected(invoiceNumThatWasEdited, true);
+         
+
         }
 
         private void lbCustomers_SelectedIndexChanged(object sender, EventArgs e)
@@ -312,14 +382,45 @@ namespace UIAssignment2
             fillCustomerDetails();
         }
 
+        //edit invoice handler
         private void btnEditInvoice_Click(object sender, EventArgs e)
         {
             InvoiceForm editInvoiceForm = new InvoiceForm();
+            editInvoiceForm.FormClosed += new FormClosedEventHandler(editInvoiceForm_FormClosed);
             //editInvoiceForm.ShowDialog(this);
             editInvoiceForm.parent = this;
             editInvoiceForm.purpose = (sender as Button).Text;
+
+            invoiceNumThatWasEdited = lbInvoiceNum.SelectedIndex;
            // Console.WriteLine((sender as Button).Text);
             editInvoiceForm.ShowDialog();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDeleteInvoice_Click(object sender, EventArgs e)
+        {
+            DialogResult deleteConfirm = MessageBox.Show( "Are you sure you want to delete invoice " + lbInvoiceNum.SelectedItem + "?", 
+                                                    "Delete Confirmation",
+                                                    MessageBoxButtons.YesNo);
+            if (deleteConfirm == DialogResult.Yes)
+            {
+                //do the delete
+                //first find the invoice object for the currently selected customer
+                invoiceToSearch = lbInvoiceNum.SelectedItem.ToString();
+                Invoice theInvoice = currentSelectedCustomer.invoices.Find(x => x.InvoiceNum == invoiceToSearch);
+
+                currentSelectedCustomer.invoices.Remove(theInvoice);
+                fillCustomerDetails();
+                if (lbInvoiceNum.Items.Count != 0)
+                {
+                    lbInvoiceNum.SetSelected(0, true);
+                }
+                
+            }
         }
 
        
