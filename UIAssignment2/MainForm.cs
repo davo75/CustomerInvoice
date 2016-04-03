@@ -540,11 +540,12 @@ namespace UIAssignment2
             switch (theme)
             {
                 case "Light":
-                    Image lightImage = new Bitmap(@"E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\light.jpg");
+                    Image lightImage = new Bitmap(UIAssignment2.Properties.Resources.light);
                     this.BackgroundImage = lightImage;
                     break;
                 case "Dark":
-                    Image darkImage = new Bitmap(@"E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\dark.jpg");
+                    //Image darkImage = new Bitmap(@"E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\dark.jpg");
+                    Image darkImage = new Bitmap(UIAssignment2.Properties.Resources.dark);
                     this.BackgroundImage = darkImage;
                     //gBoxCustomerDetails.BackgroundImage = darkImage;
                     //gBoxCustomerDetails.ForeColor = Color.Salmon;
