@@ -12,417 +12,110 @@ namespace UIAssignment2
 {
     public partial class CustomerForm : Form
     {
-        internal List<Customer> customers;
-        internal List<Item> products;
 
-        private string invoiceToSearch;
-
-        private int invoiceNumThatWasEdited;
-
-        private int invoiceCount;
-
-        public int InvoiceCount
-        {
-            get { return invoiceCount; }
-            set { invoiceCount = value; }
-        }
-
-        public string InvoiceToSearch
-        {
-            get { return invoiceToSearch; }
-            set { invoiceToSearch = value; }
-        }
-        
+        public string purpose; //add or edit customer
+        public MainForm parent;
 
         public CustomerForm()
         {
             InitializeComponent();
-            customers = new List<Customer>();
-            addTestData();
-           
+           //this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
         }
 
-        public string getNewInvoiceNum()
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            return "INV00" + (invoiceCount+1);
+            this.Dispose();
         }
 
-        
-
-
-        public void addTestData()
+        private void CustomerForm_Load(object sender, EventArgs e)
         {
-            invoiceCount = 0;
-
-            //create some product items
-            products = new List<Item>();
-
-            products.Add(new Item(1, "Mouse", "Wireless Mouse", 14.99m));
-            products.Add(new Item(2, "Macbook Pro", "i7 8Gb RAM 15-inch", 1450.00m));
-            products.Add(new Item(3, "Monitor", "DELL 16:9 24inch", 350.00m));
-            products.Add(new Item(4, "Dock", "USB HDMI DVI Dual Monitor", 200.00m));
-            products.Add(new Item(5, "Keyboard", "Wireless Keyboard", 34.99m));
-            products.Add(new Item(6, "USB Drive", "SanDisk 16GB", 59.00m));
-
-
-            Customer c1 = new Customer("001",
-                                        "Dave", "Pyle",
-                                        "349 Grand Prom", "Dianella", "WA", "6059",
-                                        "0478220117",
-                                        "Intekka");
-            c1.invoices.Add(new Invoice("INV001", DateTime.Today));
-            invoiceCount++;
-            c1.invoices[0].addItem(products[0],2);
-            c1.invoices[0].addItem(products[1],1);
-
-            c1.invoices.Add(new Invoice("INV002", DateTime.Today));
-            invoiceCount++;
-            c1.invoices[1].addItem(products[2],1);
-            c1.invoices[1].addItem(products[3],2);
-            c1.invoices[1].PaidStatus = true;
-
-            Customer c2 = new Customer("002",
-                                       "Lena", "Funtseva",
-                                       "123 Flinders Ave", "Mirrabooka", "WA", "6061",
-                                       "0478221847",
-                                       "Russki");
-
-            c2.invoices.Add(new Invoice("INV003", DateTime.Today));
-            invoiceCount++;
-            c2.invoices[0].addItem(products[4],3);
-            c2.invoices[0].addItem(products[5],4);
-
-            Customer c3 = new Customer("003",
-                                      "Tom", "Butler",
-                                      "4 Mill Lane", "East Perth", "WA", "6061",
-                                      "1512281438",
-                                      "Red Cross");
-
-
-            customers.Add(c1);
-            customers.Add(c2);
-            customers.Add(c3);
-
-            //set the datasource of the listbox to the arraylist of customers
-            lbCustomers.DataSource = getCustData();// customers;
-            lbCustomers.DisplayMember = "CustFirstName"; 
-            lbCustomers.ValueMember = "CustNum";
-
-
-
-            dgInvoiceDetails.AutoGenerateColumns = false;
-
-            addColumnstoTable();
-            
-            fillCustomerDetails();
-
-            //Console.WriteLine(getNewInvoiceNum());
-            
-        }
-
-        
-
-        private DataTable dtCustomers;
-
-        private DataTable getCustData()
-        {
-            dtCustomers = new DataTable();
-            
-            dtCustomers.Columns.Add("CustFirstName");
-            dtCustomers.Columns.Add("CustNum");
-
-            foreach (Customer cust in customers)
+            if (purpose.Equals("Add"))
             {
-                var row = dtCustomers.NewRow();
-                row["CustFirstName"] = cust.CustFirstName;
-                row["CustNum"] = cust.CustNum;
-                dtCustomers.Rows.Add(row);
+                txtBoxCustNum.Text = (parent.customers.Count + 1).ToString();
             }
-
-           
-
-            return dtCustomers;
-
+            else if (purpose.Equals("Edit"))
+            {
+                txtBoxCustNum.Text = parent.currentSelectedCustomer.CustNum;
+                fillCustomerDetails();
+            }
         }
 
-        private void addColumnstoTable()
+        private void btnCustSave_Click(object sender, EventArgs e)
         {
-            DataGridViewTextBoxColumn col1 = new DataGridViewTextBoxColumn();
-            col1.HeaderText = "Item Num";
-            col1.DataPropertyName = "ItemNum";
-            col1.Width = 80;
-            col1.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            col1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgInvoiceDetails.Columns.Add(col1);
+            if (purpose.Equals("Add"))
+            {
 
-            DataGridViewTextBoxColumn col2 = new DataGridViewTextBoxColumn();
-            col2.HeaderText = "Item";
-            col2.DataPropertyName = "ItemName";
-            col2.Width = 117;
-            dgInvoiceDetails.Columns.Add(col2);
-
-            DataGridViewTextBoxColumn col3 = new DataGridViewTextBoxColumn();
-            col3.HeaderText = "Description";
-            col3.DataPropertyName = "ItemDesc";
-            col3.Width = 180;
-            dgInvoiceDetails.Columns.Add(col3);
-
-            DataGridViewTextBoxColumn col4 = new DataGridViewTextBoxColumn();
-            col4.HeaderText = "Cost";
-            col4.DataPropertyName = "ItemCost";
-            col4.Width = 80;
-            col4.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            col4.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgInvoiceDetails.Columns.Add(col4);
-
-            DataGridViewTextBoxColumn col5 = new DataGridViewTextBoxColumn();
-            col5.HeaderText = "Qty";
-            col5.DataPropertyName = "ItemQty";
-            col5.Width = 60;
-            col5.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            col5.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgInvoiceDetails.Columns.Add(col5);
-
-            DataGridViewTextBoxColumn col6 = new DataGridViewTextBoxColumn();
-            col6.HeaderText = "Total Cost";
-            col6.DataPropertyName = "TotalCost";
-            col6.Width = 80;
-            col6.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            col6.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgInvoiceDetails.Columns.Add(col6);
-                       
-            dgInvoiceDetails.ClearSelection();
+                if (this.ValidateChildren(ValidationConstraints.Enabled))
+                {
+                    createNewCustomer();
+                    this.Dispose();
+                }
+            }
+            else if (purpose.Equals("Edit"))
+            {
+                updateCustomerDetails();
+                this.Dispose();
+            }
+           
         }
 
+        private void updateCustomerDetails()
+        {
+            parent.currentSelectedCustomer.CustFirstName = txtBoxFirstName.Text;
+            parent.currentSelectedCustomer.CustLastName = txtBoxLastName.Text;
+            parent.currentSelectedCustomer.CustStreet = txtBoxStreet.Text;
+            parent.currentSelectedCustomer.CustSuburb = txtBoxSuburb.Text;
+            parent.currentSelectedCustomer.CustState = cboxState.Text;
+            parent.currentSelectedCustomer.CustPostCode = txtBoxPostCode.Text; 
+            parent.currentSelectedCustomer.CustContactNum = txtBoxPhone.Text;
+            parent.currentSelectedCustomer.CustCompany = txtBoxCompany.Text;
 
-        internal Customer currentSelectedCustomer;
-
-
-        
+        }
 
         private void fillCustomerDetails()
         {
-            try
-            {
-                string custToSearch = lbCustomers.SelectedValue.ToString();
-                currentSelectedCustomer = customers.Find(x => x.CustNum == custToSearch);
-
-                if (currentSelectedCustomer != null)
-                {
-                    txtBoxCustNum.Text = currentSelectedCustomer.CustNum;
-                    txtBoxCompany.Text = currentSelectedCustomer.CustCompany;
-                    txtBoxFirstName.Text = currentSelectedCustomer.CustFirstName;
-                    txtBoxLastName.Text = currentSelectedCustomer.CustLastName;
-                    txtBoxStreet.Text = currentSelectedCustomer.CustStreet;
-                    txtBoxSuburb.Text = currentSelectedCustomer.CustSuburb;
-                    txtBoxState.Text = currentSelectedCustomer.CustState;
-                    txtBoxPostCode.Text = currentSelectedCustomer.CustPostCode;
-                    txtBoxPhone.Text = currentSelectedCustomer.CustContactNum;
-
-                    fillInvoiceList(currentSelectedCustomer);
-                }
-            }
-            catch (NullReferenceException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+                txtBoxFirstName.Text = parent.currentSelectedCustomer.CustFirstName;
+                txtBoxLastName.Text = parent.currentSelectedCustomer.CustLastName;
+                txtBoxStreet.Text = parent.currentSelectedCustomer.CustStreet;
+                txtBoxSuburb.Text = parent.currentSelectedCustomer.CustSuburb;
+                cboxState.SelectedText = parent.currentSelectedCustomer.CustState;
+                txtBoxPostCode.Text = parent.currentSelectedCustomer.CustPostCode;
+                txtBoxPhone.Text = parent.currentSelectedCustomer.CustContactNum;
+                txtBoxCompany.Text = parent.currentSelectedCustomer.CustCompany;
 
         }
 
-        private void fillInvoiceList(Customer cust)
-        {
-            lbInvoiceNum.Items.Clear();
-
-            if (cust.invoices.Count > 0)
-            {
-                //invoice items so enable edit invoice and delete invoice buttons
-                btnEditInvoice.Enabled = true;
-                btnDeleteInvoice.Enabled = true;
-
-                for (int i = 0; i < cust.invoices.Count; i++)
-                {
-                    lbInvoiceNum.Items.Add(cust.invoices[i].InvoiceNum);
-                }
-                lbInvoiceNum.SelectedIndex = 0;
-                fillInvoiceDetails(cust);
-
-            }
-            else
-            {
-                dgInvoiceDetails.DataSource = null;
-                tbTotalInvoiceCost.Text = "";
-                //no invoice items so disable edit invoice and delete invoice buttons
-                btnEditInvoice.Enabled = false;
-                btnDeleteInvoice.Enabled = false;
-                
-            }
-        }
-
-
-
-        private string getPaymentStatus(Invoice inv)
-        {
-            string status;
-
-            if (inv.PaidStatus)
-            {
-                status = "Paid on " + inv.PaymentDate.ToShortDateString();
-                lblStatus.ForeColor = System.Drawing.Color.Green;
-            }
-            else
-            {
-                status = "Unpaid. Payment due on " + inv.PaymentDate.ToShortDateString();
-                lblStatus.ForeColor = System.Drawing.Color.Red;
+        private void createNewCustomer() {
             
-            }
-
-            return status;
+            parent.addNewCustomer(txtBoxCustNum.Text, 
+                txtBoxFirstName.Text,
+                txtBoxLastName.Text,
+                txtBoxStreet.Text,
+                txtBoxSuburb.Text,
+                cboxState.GetItemText(cboxState.SelectedItem),
+                txtBoxPostCode.Text,
+                txtBoxPhone.Text,
+                txtBoxCompany.Text);
         }
 
-        private void fillInvoiceDetails(Customer cust)
+        private void txtBoxCompany_Validating(object sender, CancelEventArgs e)
         {
-            try
+            bool cancel = false;
+            if (txtBoxCompany.Text == "")
             {
-                invoiceToSearch = lbInvoiceNum.SelectedItem.ToString();
-                Invoice theInvoice = cust.invoices.Find(x => x.InvoiceNum == invoiceToSearch);
-                List<InvoiceItem> invItems = theInvoice.getItems();
-
-
-                if (invItems.Count > 0)
-                {
-                    
-                    var source = new BindingSource();
-                    source.DataSource = invItems;
-                    dgInvoiceDetails.DataSource = source;
-                    dgInvoiceDetails.ClearSelection();
-
-                    gbInvoiceDetails.Text = "Invoice Details for " + invoiceToSearch;
-
-                    lblStatus.Text = getPaymentStatus(theInvoice);
-                    tbTotalInvoiceCost.Text = "$" + theInvoice.TotalCost.ToString();
-                }
-
-                dgInvoiceDetails.Rows[0].Selected = false;
-                dgInvoiceDetails.ClearSelection();
-
+                cancel = true;
+                errorProvider1.SetError(txtBoxCompany, "Please enter a company name");
             }
-
-            catch (NullReferenceException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-        }
-        
-
-        public string getSelectedInvoiceNum()
-        {
-            try
-            {
-                Console.WriteLine("Invoice Num is " + invoiceToSearch);
-                
-                //return lbInvoiceNum.SelectedItem.ToString();
-            }
-            catch (NullReferenceException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return invoiceToSearch;
-        }
-
-        //add invoice handler
-        private void button1_Click(object sender, EventArgs e)
-        {
-            InvoiceForm addInvoiceForm = new InvoiceForm();
-            addInvoiceForm.FormClosed += new FormClosedEventHandler(addInvoiceForm_FormClosed);
-            addInvoiceForm.parent = this;
-            addInvoiceForm.purpose = (sender as Button).Text;
-            addInvoiceForm.ShowDialog();
-            //addInvoice.ShowDialog(this);
-        }
-
-        //actions to do after Invoice dialog closes from adding new invoice
-        void addInvoiceForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            //refresh the data
-            fillCustomerDetails();
-           
-            //set the selection to the newly created invoice number so its details are displayed
-            lbInvoiceNum.SetSelected(lbInvoiceNum.Items.Count - 1, true);
-
-        }
-
-        //actions to do after Invoice dialog closes from editing existing invoice
-        void editInvoiceForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            //refresh the data
-            fillCustomerDetails();
-
-            lbInvoiceNum.SetSelected(invoiceNumThatWasEdited, true);
-         
-
-        }
-
-        private void lbCustomers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            fillCustomerDetails();
-        }
-
-        private void lbInvoiceNum_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //getSelectedInvoiceNum();
-            fillInvoiceDetails(currentSelectedCustomer);
-
-        }
-
-        private void tbSearch_TextChanged(object sender, EventArgs e)
-        {
-            DataView dvCustomers = dtCustomers.DefaultView;
-            dvCustomers.RowFilter = "CustFirstName LIKE '%" + tbSearch.Text + "%'";
-            fillCustomerDetails();
-        }
-
-        //edit invoice handler
-        private void btnEditInvoice_Click(object sender, EventArgs e)
-        {
-            InvoiceForm editInvoiceForm = new InvoiceForm();
-            editInvoiceForm.FormClosed += new FormClosedEventHandler(editInvoiceForm_FormClosed);
-            //editInvoiceForm.ShowDialog(this);
-            editInvoiceForm.parent = this;
-            editInvoiceForm.purpose = (sender as Button).Text;
-
-            invoiceNumThatWasEdited = lbInvoiceNum.SelectedIndex;
-           // Console.WriteLine((sender as Button).Text);
-            editInvoiceForm.ShowDialog();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnDeleteInvoice_Click(object sender, EventArgs e)
-        {
-            DialogResult deleteConfirm = MessageBox.Show( "Are you sure you want to delete invoice " + lbInvoiceNum.SelectedItem + "?", 
-                                                    "Delete Confirmation",
-                                                    MessageBoxButtons.YesNo);
-            if (deleteConfirm == DialogResult.Yes)
-            {
-                //do the delete
-                //first find the invoice object for the currently selected customer
-                invoiceToSearch = lbInvoiceNum.SelectedItem.ToString();
-                Invoice theInvoice = currentSelectedCustomer.invoices.Find(x => x.InvoiceNum == invoiceToSearch);
-
-                currentSelectedCustomer.invoices.Remove(theInvoice);
-                fillCustomerDetails();
-                if (lbInvoiceNum.Items.Count != 0)
-                {
-                    lbInvoiceNum.SetSelected(0, true);
-                }
-                
-            }
+            
+            e.Cancel = cancel;
+            
         }
 
        
-    }
+
+        private void txtBoxCompany_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(txtBoxCompany, string.Empty);
+        }
+     }
 }

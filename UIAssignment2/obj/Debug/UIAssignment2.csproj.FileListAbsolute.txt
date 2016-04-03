@@ -11,10 +11,11 @@ E:\TAFE\UI\Assignments\Assignment 2\UIAssignment2\UIAssignment2\obj\Debug\UIAssi
 E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\bin\Debug\UIAssignment2.exe.config
 E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\bin\Debug\UIAssignment2.exe
 E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\bin\Debug\UIAssignment2.pdb
-E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.CustomerForm.resources
 E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.InvoiceForm.resources
 E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.Properties.Resources.resources
 E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.csproj.GenerateResource.Cache
 E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.exe
 E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.pdb
 E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.csprojResolveAssemblyReference.cache
+E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.MainForm.resources
+E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.CustomerForm.resources

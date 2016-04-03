@@ -13,7 +13,7 @@ namespace UIAssignment2
     public partial class InvoiceForm : Form
     {
 
-        public CustomerForm parent;
+        public MainForm parent;
         public string purpose; //add or edit
 
         private DataGridViewTextBoxColumn itemDescCol;
