@@ -71,9 +71,9 @@
             this.deleteCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.txtBoxInvSearch = new System.Windows.Forms.ToolStripTextBox();
             this.btnSearch = new System.Windows.Forms.ToolStripButton();
+            this.txtBoxInvSearch = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cboxTheme = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
@@ -445,7 +445,7 @@
             this.editCustomerToolStripMenuItem,
             this.deleteCustomerToolStripMenuItem});
             this.customerToolStripMenuItem.Name = "customerToolStripMenuItem";
-            this.customerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.customerToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.customerToolStripMenuItem.Text = "Customer";
             // 
             // addCustomerToolStripMenuItem
@@ -472,7 +472,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -494,21 +494,6 @@
             this.toolStrip1.TabIndex = 43;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(50, 22);
-            this.toolStripLabel1.Text = "Invoices";
-            // 
-            // txtBoxInvSearch
-            // 
-            this.txtBoxInvSearch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.txtBoxInvSearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtBoxInvSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBoxInvSearch.Name = "txtBoxInvSearch";
-            this.txtBoxInvSearch.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtBoxInvSearch.Size = new System.Drawing.Size(70, 25);
-            // 
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -519,6 +504,21 @@
             this.btnSearch.Size = new System.Drawing.Size(46, 22);
             this.btnSearch.Text = "Search";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtBoxInvSearch
+            // 
+            this.txtBoxInvSearch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtBoxInvSearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtBoxInvSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtBoxInvSearch.Name = "txtBoxInvSearch";
+            this.txtBoxInvSearch.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtBoxInvSearch.Size = new System.Drawing.Size(70, 25);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(50, 22);
+            this.toolStripLabel1.Text = "Invoices";
             // 
             // toolStripSeparator1
             // 
@@ -557,6 +557,7 @@
             this.Controls.Add(this.gBoxCustomerDetails);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

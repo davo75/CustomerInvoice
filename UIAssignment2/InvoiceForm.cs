@@ -35,6 +35,7 @@ namespace UIAssignment2
         //cancel button handler
         private void button2_Click(object sender, EventArgs e)
         {
+            //Console.WriteLine("Add Invoice Form closed using (Text)" + ((Button)sender).Text); //displays 'Cancel'
             this.Dispose();
         }
 
@@ -155,10 +156,11 @@ namespace UIAssignment2
                 double total = Convert.ToDouble(itemCost) * Convert.ToInt16(qty);
                 dgAddInvoiceItems.Rows[e.RowIndex].Cells[4].Value = total;
 
-                updateInvoiceTotal();
+               
 
               
             }
+            updateInvoiceTotal();
 
         }
 
@@ -172,7 +174,7 @@ namespace UIAssignment2
                 invoiceTotal += Convert.ToDecimal(dgAddInvoiceItems.Rows[i].Cells[4].Value);
             }
             
-            txtBoxInvoiceTotal.Text = "$" + invoiceTotal.ToString();
+            txtBoxInvoiceTotal.Text = "$" + invoiceTotal.ToString("#.00");
         }
         private void addItemRow(int itemNum, DataGridViewCellEventArgs e)
         {
@@ -186,6 +188,8 @@ namespace UIAssignment2
                         dgAddInvoiceItems.Rows[e.RowIndex].Cells[1].Value = item.ItemDesc;
                         dgAddInvoiceItems.Rows[e.RowIndex].Cells[2].Value = item.ItemCost;
                         dgAddInvoiceItems.Rows[e.RowIndex].Cells[3].Value = 1;
+                        dgAddInvoiceItems.Rows[e.RowIndex].Cells[4].Value = item.ItemCost;
+                        
                     }
                 
             }
@@ -252,6 +256,7 @@ namespace UIAssignment2
             if (purpose.Equals("Add Invoice"))
             {
                 createInvoice();
+
             }
             else if (purpose.Equals("Edit Invoice"))
             {

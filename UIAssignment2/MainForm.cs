@@ -297,7 +297,7 @@ namespace UIAssignment2
                     gbInvoiceDetails.Text = "Invoice Details for " + invoiceToSearch;
 
                     lblStatus.Text = getPaymentStatus(theInvoice);
-                    tbTotalInvoiceCost.Text = "$" + theInvoice.TotalCost.ToString();
+                    tbTotalInvoiceCost.Text = "$" + (theInvoice.TotalCost).ToString("#.00");
                 }
 
                 dgInvoiceDetails.Rows[0].Selected = false;
@@ -346,7 +346,11 @@ namespace UIAssignment2
             //add invoice to the list for autocomplete search
             fillSearchAutoComplete();
             //set the selection to the newly created invoice number so its details are displayed
-            lbInvoiceNum.SetSelected(lbInvoiceNum.Items.Count - 1, true);
+            if (lbInvoiceNum.Items.Count > 0)
+            {
+                lbInvoiceNum.SetSelected(lbInvoiceNum.Items.Count - 1, true);
+            }
+            
 
         }
 
@@ -412,6 +416,8 @@ namespace UIAssignment2
                 Invoice theInvoice = currentSelectedCustomer.invoices.Find(x => x.InvoiceNum == invoiceToSearch);
 
                 currentSelectedCustomer.invoices.Remove(theInvoice);
+                //update the search autocomplete
+                fillSearchAutoComplete();
                 fillCustomerDetails();
                 if (lbInvoiceNum.Items.Count != 0)
                 {
@@ -447,6 +453,8 @@ namespace UIAssignment2
             if (deleteConfirm == DialogResult.Yes)
             {
                 customers.Remove(currentSelectedCustomer);
+                //update the search autocomplete
+                fillSearchAutoComplete();
                 lbCustomers.DataSource = getCustData();
                 fillCustomerDetails();
             }
