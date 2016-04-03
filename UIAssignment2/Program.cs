@@ -16,7 +16,14 @@ namespace UIAssignment2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            LoginForm fLogin = new LoginForm();
+            if (fLogin.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new MainForm());
+            }
+                  
+            
         }
     }
 }

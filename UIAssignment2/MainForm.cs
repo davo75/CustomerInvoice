@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections.Specialized;
 
 namespace UIAssignment2
 {
@@ -25,6 +26,7 @@ namespace UIAssignment2
         {
             InitializeComponent();
             customers = new List<Customer>();
+            
             addTestData();
 
         }
@@ -45,6 +47,8 @@ namespace UIAssignment2
 
         public void addTestData()
         {
+           
+
             invoiceCount = 0;
 
             //create some product items
@@ -88,8 +92,14 @@ namespace UIAssignment2
             //add the columsn to the table
             addColumnstoTable();
             //fill the table with customer details
-            fillCustomerDetails();      
+            fillCustomerDetails();
 
+            fillSearchAutoComplete();
+
+            //set the theme for the form to default
+            cboxTheme.ComboBox.SelectedIndex = 0;
+            
+            
         }
 
         public void addNewCustomer(string custNum, string custFirstName, string custLastName, string custStreet, string custSuburb, string custState, string custPostCode, string custContactNum, string custCompany)
@@ -103,6 +113,7 @@ namespace UIAssignment2
             
             cust.invoices.Add(new Invoice(getNewInvoiceNum(), DateTime.Today));
             invoiceCount++;
+            
         }
 
         public string getNewInvoiceNum()
@@ -238,7 +249,8 @@ namespace UIAssignment2
             else
             {
                 dgInvoiceDetails.DataSource = null;
-                tbTotalInvoiceCost.Text = "";
+                tbTotalInvoiceCost.Text = string.Empty;
+                lblStatus.Text = string.Empty;
                 //no invoice items so disable edit invoice and delete invoice buttons
                 btnEditInvoice.Enabled = false;
                 btnDeleteInvoice.Enabled = false;
@@ -331,7 +343,8 @@ namespace UIAssignment2
         {
             //refresh the data
             fillCustomerDetails();
-
+            //add invoice to the list for autocomplete search
+            fillSearchAutoComplete();
             //set the selection to the newly created invoice number so its details are displayed
             lbInvoiceNum.SetSelected(lbInvoiceNum.Items.Count - 1, true);
 
@@ -350,13 +363,16 @@ namespace UIAssignment2
 
         private void lbCustomers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //clear any searches in the invoice search text box
+            txtBoxInvSearch.Text = string.Empty;
             fillCustomerDetails();
            
         }
 
         private void lbInvoiceNum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //getSelectedInvoiceNum();
+            //clear any searches in the invoice search text box
+            txtBoxInvSearch.Text = string.Empty;
             fillInvoiceDetails(currentSelectedCustomer);
 
         }
@@ -442,7 +458,7 @@ namespace UIAssignment2
         //handes File-Exit action
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            Application.Exit();
         }
 
         private void editCustomerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -455,6 +471,89 @@ namespace UIAssignment2
         
         }
 
+        private void txtBoxInvSearch_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Search clicked");
+        }
 
+        private void txtBoxInvSearch_TextChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("Search box changed");
+        }
+        //search for invoice handler
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            findInvoice(txtBoxInvSearch.Text);
+        }
+
+        private void findInvoice(string invoiceNum)
+        {
+            bool found = false;
+            //find the customer the invoice belongs to
+            foreach (var cust in customers)
+            {
+                foreach (var inv in cust.invoices)
+                {
+                    if (inv.InvoiceNum.Equals(invoiceNum))
+                    {
+                        //Console.WriteLine("Invoice found for customer " + cust.CustFirstName);
+                        found = true;
+                        lbCustomers.SelectedValue = cust.CustNum;
+                        lbInvoiceNum.SelectedItem = invoiceNum.ToString();
+                        break;
+                    }                    
+                }
+            }
+
+            if (!found)            
+            {
+                MessageBox.Show("No results for invoice number: " + invoiceNum);
+                //clear any searches in the invoice search text box
+                txtBoxInvSearch.Text = string.Empty;
+            }
+
+        }
+
+        private void fillSearchAutoComplete()
+        {
+            AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
+            foreach (var cust in customers)
+            {
+                foreach (var inv in cust.invoices)
+                {
+                    collection.Add(inv.InvoiceNum);
+                }
+
+            }
+            txtBoxInvSearch.AutoCompleteCustomSource = collection;
+        }
+
+      
+
+        private void cboxTheme_SelectedIndexChanged(object sender, EventArgs e)
+        {
+             
+            //string theme = cboxTheme.ComboBox.SelectedValue.ToString();
+
+            string theme = cboxTheme.ComboBox.GetItemText(cboxTheme.ComboBox.SelectedItem);
+
+            switch (theme)
+            {
+                case "Light":
+                    Image lightImage = new Bitmap(@"E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\light.jpg");
+                    this.BackgroundImage = lightImage;
+                    break;
+                case "Dark":
+                    Image darkImage = new Bitmap(@"E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\dark.jpg");
+                    this.BackgroundImage = darkImage;
+                    //gBoxCustomerDetails.BackgroundImage = darkImage;
+                    //gBoxCustomerDetails.ForeColor = Color.Salmon;
+                    break;
+                default:                    
+                    this.BackgroundImage = null;
+                    break;
+            }
+           
+        }
     }
 }

@@ -19,3 +19,4 @@ E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIA
 E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.csprojResolveAssemblyReference.cache
 E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.MainForm.resources
 E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.CustomerForm.resources
+E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\UIAssignment2\obj\Debug\UIAssignment2.LoginForm.resources
