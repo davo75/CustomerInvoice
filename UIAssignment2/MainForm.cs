@@ -13,7 +13,9 @@ namespace UIAssignment2
 {
     public partial class MainForm : Form
     {
-        internal List<Customer> customers;
+        //internal List<Customer> customers;
+        internal Customer[] customers;
+        private const int NUM_CUSTOMERS = 20;
         internal List<Item> products;
         internal Customer currentSelectedCustomer;
 
@@ -21,12 +23,13 @@ namespace UIAssignment2
         private string invoiceToSearch;
         private int invoiceNumThatWasEdited;
         private int invoiceCount;
-        
+        private int customerCount;
+
         public MainForm()
         {
             InitializeComponent();
-            customers = new List<Customer>();
-            
+            //customers = new List<Customer>();
+            customers = new Customer[NUM_CUSTOMERS];
             addTestData();
 
         }
@@ -50,6 +53,7 @@ namespace UIAssignment2
            
 
             invoiceCount = 0;
+            customerCount = 0;
 
             //create some product items
             products = new List<Item>();
@@ -111,16 +115,63 @@ namespace UIAssignment2
         public void addNewCustomer(string custNum, string custFirstName, string custLastName, string custStreet, string custSuburb, string custState, string custPostCode, string custContactNum, string custCompany)
         {
 
-            customers.Add(new Customer(custNum, custFirstName, custLastName, custStreet, custSuburb, custState, custPostCode, custContactNum, custCompany));
+            customers[customerCount] = new Customer(custNum, custFirstName, custLastName, custStreet, custSuburb, custState, custPostCode, custContactNum, custCompany);
+            customerCount++;
         }
 
         internal void addNewInvoice(Customer cust)
         {
             
-            cust.invoices.Add(new Invoice(getNewInvoiceNum(), DateTime.Today));
+            //cust.invoices.Add(new Invoice(getNewInvoiceNum(), DateTime.Today));
+            cust.addInvoice(new Invoice(getNewInvoiceNum(), DateTime.Today));
+
             invoiceCount++;
             
         }
+
+        internal Customer findCustomer(string custNum)
+        {
+            bool found = false;
+            int index = -1;
+
+            for (int i = 0; i < customerCount; i++)
+            {
+                if (customers[i].CustNum.Equals(custNum))
+                {
+                    found = true;
+                    index = i;
+                    break;
+                }
+            }
+            if (found)
+            {
+                //Console.WriteLine("Customer found");
+                return customers[index];
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        internal void removeCustomer(Customer custToDelete)
+        {
+            //convert array to list
+            List<Customer> list = customers.ToList<Customer>();
+            //remove the invoice
+            list.Remove(custToDelete);
+            //convert list back to array
+            customers = list.ToArray();
+            customerCount--;
+        }
+
+        public string getNewCustNum()
+        {
+            return (customerCount + 1).ToString();
+        }
+
+
 
         public string getNewInvoiceNum()
         {
@@ -141,10 +192,13 @@ namespace UIAssignment2
 
             foreach (Customer cust in customers)
             {
-                var row = dtCustomers.NewRow();
-                row["CustFirstName"] = cust.CustFirstName;
-                row["CustNum"] = cust.CustNum;
-                dtCustomers.Rows.Add(row);
+                if (cust != null)
+                {
+                    var row = dtCustomers.NewRow();
+                    row["CustFirstName"] = cust.CustFirstName;
+                    row["CustNum"] = cust.CustNum;
+                    dtCustomers.Rows.Add(row);
+                }
             }
 
             DataView dv = dtCustomers.DefaultView;
@@ -210,7 +264,7 @@ namespace UIAssignment2
             {
 
                 string custToSearch = lbCustomers.SelectedValue.ToString();
-                currentSelectedCustomer = customers.Find(x => x.CustNum == custToSearch);
+                currentSelectedCustomer = findCustomer(custToSearch);
 
                 if (currentSelectedCustomer != null)
                 {
@@ -238,13 +292,13 @@ namespace UIAssignment2
         {
             lbInvoiceNum.Items.Clear();
 
-            if (cust.invoices.Count > 0)
+            if (cust.InvoiceCounter > 0)
             {
                 //invoice items so enable edit invoice and delete invoice buttons
                 btnEditInvoice.Enabled = true;
                 btnDeleteInvoice.Enabled = true;
 
-                for (int i = 0; i < cust.invoices.Count; i++)
+                for (int i = 0; i < cust.InvoiceCounter; i++)
                 {
                     lbInvoiceNum.Items.Add(cust.invoices[i].InvoiceNum);
                 }
@@ -288,7 +342,8 @@ namespace UIAssignment2
             try
             {
                 invoiceToSearch = lbInvoiceNum.SelectedItem.ToString();
-                Invoice theInvoice = cust.invoices.Find(x => x.InvoiceNum == invoiceToSearch);
+                //Invoice theInvoice = cust.invoices.Find(x => x.InvoiceNum == invoiceToSearch);
+                Invoice theInvoice = cust.findInvoice(invoiceToSearch);
                 List<InvoiceItem> invItems = theInvoice.getItems();
 
 
@@ -341,7 +396,7 @@ namespace UIAssignment2
             addInvoiceForm.parent = this;
             addInvoiceForm.purpose = (sender as Button).Text;
             addInvoiceForm.ShowDialog();
-            //addInvoice.ShowDialog(this);
+            
         }
 
         //actions to do after Invoice dialog closes from adding new invoice
@@ -419,9 +474,9 @@ namespace UIAssignment2
                 //do the delete
                 //first find the invoice object for the currently selected customer
                 invoiceToSearch = lbInvoiceNum.SelectedItem.ToString();
-                Invoice theInvoice = currentSelectedCustomer.invoices.Find(x => x.InvoiceNum == invoiceToSearch);
-
-                currentSelectedCustomer.invoices.Remove(theInvoice);
+                //Invoice theInvoice = currentSelectedCustomer.invoices.Find(x => x.InvoiceNum == invoiceToSearch);
+                Invoice theInvoice = currentSelectedCustomer.findInvoice(invoiceToSearch);
+                currentSelectedCustomer.removeInvoice(theInvoice);
                 //update the search autocomplete
                 fillSearchAutoComplete();
                 fillCustomerDetails();
@@ -458,7 +513,7 @@ namespace UIAssignment2
                                                    MessageBoxButtons.YesNo);
             if (deleteConfirm == DialogResult.Yes)
             {
-                customers.Remove(currentSelectedCustomer);
+                removeCustomer(currentSelectedCustomer);
                 //update the search autocomplete
                 fillSearchAutoComplete();
                 lbCustomers.DataSource = getCustData();
@@ -503,29 +558,41 @@ namespace UIAssignment2
         private void findInvoice(string invoiceNum)
         {
             bool found = false;
-            //find the customer the invoice belongs to
-            foreach (var cust in customers)
+
+            try
             {
-                foreach (var inv in cust.invoices)
+                //find the customer the invoice belongs to
+                for (int i = 0; i < customerCount; i++)
                 {
-                    if (inv.InvoiceNum.Equals(invoiceNum))
+                    for (int j = 0; j < customers[i].InvoiceCounter; j++)
                     {
-                        //Console.WriteLine("Invoice found for customer " + cust.CustFirstName);
-                        found = true;
-                        lbCustomers.SelectedValue = cust.CustNum;
-                        lbInvoiceNum.SelectedItem = invoiceNum.ToString();
+                        if (customers[i].invoices[j].InvoiceNum.Equals(invoiceNum))
+                        {
+                            //Console.WriteLine("Invoice found for customer " + cust.CustFirstName);
+                            found = true;
+                            lbCustomers.SelectedValue = customers[i].CustNum;
+                            lbInvoiceNum.SelectedItem = invoiceNum.ToString();
+                            break;
+                        }
+                    }
+                    if (found)
+                    {
                         break;
-                    }                    
+                    }
+                }
+                
+
+                if (!found)
+                {
+                    MessageBox.Show("No results for invoice number: " + invoiceNum);
+                    //clear any searches in the invoice search text box
+                    txtBoxInvSearch.Text = string.Empty;
                 }
             }
-
-            if (!found)            
+            catch (NullReferenceException ex)
             {
-                MessageBox.Show("No results for invoice number: " + invoiceNum);
-                //clear any searches in the invoice search text box
-                txtBoxInvSearch.Text = string.Empty;
+                Console.WriteLine("Can't find it! " + ex.Message);
             }
-
         }
 
         private void fillSearchAutoComplete()
@@ -533,9 +600,16 @@ namespace UIAssignment2
             AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
             foreach (var cust in customers)
             {
-                foreach (var inv in cust.invoices)
+                if (cust != null)
                 {
-                    collection.Add(inv.InvoiceNum);
+                    foreach (var inv in cust.invoices)
+                    {
+                        if (inv != null)
+                        {
+                            collection.Add(inv.InvoiceNum);
+                        }
+
+                    }
                 }
 
             }

@@ -31,7 +31,7 @@ namespace UIAssignment2
         {
             if (purpose.Equals("Add"))
             {
-                txtBoxCustNum.Text = (parent.customers.Count + 1).ToString();
+                txtBoxCustNum.Text = parent.getNewCustNum();
             }
             else if (purpose.Equals("Edit"))
             {

@@ -18,9 +18,12 @@ namespace UIAssignment2
         private string custPostCode;
         private string custContactNum;
         private string custCompany;
-        public List<Invoice> invoices; //need to convert to array
-       
 
+        public Invoice[] invoices;
+        private const int NUM_INVOICES = 10; //number of invoices allowed per customer
+        private int invoiceCounter = 0;
+
+        
         
         public Customer(string custNum, string custFirstName, string custLastName, string custStreet, string custSuburb, string custState, string custPostCode, string custContactNum, string custCompany)
         {
@@ -34,19 +37,60 @@ namespace UIAssignment2
             this.CustContactNum = custContactNum;
             this.CustCompany = custCompany;
             
-            invoices = new List<Invoice>();
+            //invoices = new List<Invoice>();
+            invoices = new Invoice[NUM_INVOICES];
         }
 
-        
+        public void removeInvoice(Invoice invoiceToDelete)
+        {
+            //convert array to list
+            List<Invoice> list = invoices.ToList<Invoice>();
+            //remove the invoice
+            list.Remove(invoiceToDelete);
+            //convert list back to array
+            invoices = list.ToArray();
+            invoiceCounter--;
+        }
 
         public void addInvoice(Invoice invoice)
         {
-            invoices.Add(invoice);
+            //invoices.Add(invoice);
+            invoices[invoiceCounter] = invoice;
+            invoiceCounter++;
             
         }
 
-        //just getters and setter below here
+        public Invoice findInvoice(string invoiceNum)
+        {
+            bool found = false;
+            int index = -1;
 
+            for (int i = 0; i < invoices.Length; i++)
+            {
+                if (invoices[i].InvoiceNum.Equals(invoiceNum))
+                {
+                    found = true;
+                    index = i;
+                    break;
+                }
+            }
+            if (found)
+            {
+                return invoices[index];
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        //just getters and setter below here
+        public int InvoiceCounter
+        {
+            get { return invoiceCounter; }
+            set { invoiceCounter = value; }
+        }
         public string CustNum
         {
             get { return custNum; }

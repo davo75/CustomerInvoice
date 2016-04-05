@@ -50,7 +50,8 @@ namespace UIAssignment2
                 this.Text = "Edit Invoice";
 
                 //get the invoice
-                invoiceToEdit = parent.currentSelectedCustomer.invoices.Find(x => x.InvoiceNum == parent.InvoiceToSearch);
+                //invoiceToEdit = parent.currentSelectedCustomer.invoices.Find(x => x.InvoiceNum == parent.InvoiceToSearch);
+                invoiceToEdit = parent.currentSelectedCustomer.findInvoice(parent.InvoiceToSearch);
 
                 paymentDatePicker.Value = invoiceToEdit.PaymentDate;
                 cboxPaidStatus.Checked = invoiceToEdit.PaidStatus;
