@@ -358,10 +358,10 @@
             // 
             // tbTotalInvoiceCost
             // 
-            this.tbTotalInvoiceCost.Location = new System.Drawing.Point(590, 223);
+            this.tbTotalInvoiceCost.Location = new System.Drawing.Point(571, 223);
             this.tbTotalInvoiceCost.Name = "tbTotalInvoiceCost";
             this.tbTotalInvoiceCost.ReadOnly = true;
-            this.tbTotalInvoiceCost.Size = new System.Drawing.Size(70, 20);
+            this.tbTotalInvoiceCost.Size = new System.Drawing.Size(89, 20);
             this.tbTotalInvoiceCost.TabIndex = 43;
             this.tbTotalInvoiceCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -369,7 +369,7 @@
             // 
             this.lblTotalInvoiceCost.AutoSize = true;
             this.lblTotalInvoiceCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalInvoiceCost.Location = new System.Drawing.Point(471, 227);
+            this.lblTotalInvoiceCost.Location = new System.Drawing.Point(453, 227);
             this.lblTotalInvoiceCost.Name = "lblTotalInvoiceCost";
             this.lblTotalInvoiceCost.Size = new System.Drawing.Size(115, 13);
             this.lblTotalInvoiceCost.TabIndex = 42;

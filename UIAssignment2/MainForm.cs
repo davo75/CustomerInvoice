@@ -73,6 +73,7 @@ namespace UIAssignment2
             addNewInvoice(customers[0]);
             addNewInvoice(customers[0]);
             addNewInvoice(customers[1]);
+            addNewInvoice(customers[4]);
 
             //add some items to the invoices
             addNewInvoiceItem(customers[0].invoices[0], products[0], 2);
@@ -81,6 +82,10 @@ namespace UIAssignment2
             addNewInvoiceItem(customers[0].invoices[1], products[3], 2);
             addNewInvoiceItem(customers[1].invoices[0], products[4], 3);
             addNewInvoiceItem(customers[1].invoices[0], products[5], 4);
+            addNewInvoiceItem(customers[4].invoices[0], products[0], 2);
+            addNewInvoiceItem(customers[4].invoices[0], products[1], 2);
+            addNewInvoiceItem(customers[4].invoices[0], products[2], 1);
+            
            
             //set the datasource of the listbox to the arraylist of customers
             lbCustomers.DataSource = getCustData();// customers;
@@ -89,6 +94,7 @@ namespace UIAssignment2
 
             //stop table columns from generating automatically
             dgInvoiceDetails.AutoGenerateColumns = false;
+            dgInvoiceDetails.RowHeadersVisible = false;
             //add the columsn to the table
             addColumnstoTable();
             //fill the table with customer details
@@ -168,13 +174,13 @@ namespace UIAssignment2
             DataGridViewTextBoxColumn col3 = new DataGridViewTextBoxColumn();
             col3.HeaderText = "Description";
             col3.DataPropertyName = "ItemDesc";
-            col3.Width = 180;
+            col3.Width = 200;
             dgInvoiceDetails.Columns.Add(col3);
 
             DataGridViewTextBoxColumn col4 = new DataGridViewTextBoxColumn();
             col4.HeaderText = "Cost";
             col4.DataPropertyName = "ItemCost";
-            col4.Width = 80;
+            col4.Width = 90;
             col4.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             col4.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgInvoiceDetails.Columns.Add(col4);
@@ -190,7 +196,7 @@ namespace UIAssignment2
             DataGridViewTextBoxColumn col6 = new DataGridViewTextBoxColumn();
             col6.HeaderText = "Total Cost";
             col6.DataPropertyName = "TotalCost";
-            col6.Width = 80;
+            col6.Width = 90;
             col6.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             col6.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgInvoiceDetails.Columns.Add(col6);

@@ -100,7 +100,7 @@ namespace UIAssignment2
             dgAddInvoiceItems.Rows[rowIndex].Cells[1].Value = item.ItemDesc;
             dgAddInvoiceItems.Rows[rowIndex].Cells[2].Value = item.ItemCost;
             dgAddInvoiceItems.Rows[rowIndex].Cells[3].Value = item.ItemQty;
-            dgAddInvoiceItems.Rows[rowIndex].Cells[4].Value = item.TotalCost;
+            dgAddInvoiceItems.Rows[rowIndex].Cells[4].Value = item.TotalCost.ToString("#.00");
 
         }
 
