@@ -18,7 +18,7 @@ namespace UIAssignment2
         private string custPostCode;
         private string custContactNum;
         private string custCompany;
-        public List<Invoice> invoices;
+        public List<Invoice> invoices; //need to convert to array
        
 
         
