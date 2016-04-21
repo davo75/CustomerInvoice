@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboxState = new System.Windows.Forms.ComboBox();
             this.txtBoxCompany = new System.Windows.Forms.TextBox();
             this.lblCompany = new System.Windows.Forms.Label();
             this.txtBoxPhone = new System.Windows.Forms.TextBox();
@@ -47,10 +49,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cboxState = new System.Windows.Forms.ComboBox();
             this.btnCustSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblAllReqd = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -82,8 +84,30 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Customer Details";
             // 
+            // cboxState
+            // 
+            this.cboxState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxState.FormattingEnabled = true;
+            this.errorProvider1.SetIconPadding(this.cboxState, 38);
+            this.cboxState.Items.AddRange(new object[] {
+            "ACT",
+            "NSW",
+            "NT",
+            "QLD",
+            "SA",
+            "TAS",
+            "VIC",
+            "WA"});
+            this.cboxState.Location = new System.Drawing.Point(153, 218);
+            this.cboxState.Name = "cboxState";
+            this.cboxState.Size = new System.Drawing.Size(67, 21);
+            this.cboxState.TabIndex = 6;
+            this.cboxState.Validating += new System.ComponentModel.CancelEventHandler(this.cboxState_Validating);
+            this.cboxState.Validated += new System.EventHandler(this.cboxState_Validated);
+            // 
             // txtBoxCompany
             // 
+            this.errorProvider1.SetIconPadding(this.txtBoxCompany, 5);
             this.txtBoxCompany.Location = new System.Drawing.Point(153, 60);
             this.txtBoxCompany.Name = "txtBoxCompany";
             this.txtBoxCompany.Size = new System.Drawing.Size(100, 20);
@@ -102,45 +126,63 @@
             // 
             // txtBoxPhone
             // 
+            this.errorProvider1.SetIconPadding(this.txtBoxPhone, 5);
             this.txtBoxPhone.Location = new System.Drawing.Point(153, 283);
             this.txtBoxPhone.Name = "txtBoxPhone";
             this.txtBoxPhone.Size = new System.Drawing.Size(100, 20);
             this.txtBoxPhone.TabIndex = 8;
+            this.txtBoxPhone.Validating += new System.ComponentModel.CancelEventHandler(this.txtBoxPhone_Validating);
+            this.txtBoxPhone.Validated += new System.EventHandler(this.txtBoxPhone_Validated);
             // 
             // txtBoxPostCode
             // 
+            this.errorProvider1.SetIconPadding(this.txtBoxPostCode, 5);
             this.txtBoxPostCode.Location = new System.Drawing.Point(153, 251);
             this.txtBoxPostCode.Name = "txtBoxPostCode";
             this.txtBoxPostCode.Size = new System.Drawing.Size(100, 20);
             this.txtBoxPostCode.TabIndex = 7;
+            this.txtBoxPostCode.Validating += new System.ComponentModel.CancelEventHandler(this.txtBoxPostCode_Validating);
+            this.txtBoxPostCode.Validated += new System.EventHandler(this.txtBoxPostCode_Validated);
             // 
             // txtBoxSuburb
             // 
+            this.errorProvider1.SetIconPadding(this.txtBoxSuburb, 5);
             this.txtBoxSuburb.Location = new System.Drawing.Point(153, 187);
             this.txtBoxSuburb.Name = "txtBoxSuburb";
             this.txtBoxSuburb.Size = new System.Drawing.Size(100, 20);
             this.txtBoxSuburb.TabIndex = 5;
+            this.txtBoxSuburb.Validating += new System.ComponentModel.CancelEventHandler(this.txtBoxSuburb_Validating);
+            this.txtBoxSuburb.Validated += new System.EventHandler(this.txtBoxSuburb_Validated);
             // 
             // txtBoxStreet
             // 
+            this.errorProvider1.SetIconPadding(this.txtBoxStreet, 5);
             this.txtBoxStreet.Location = new System.Drawing.Point(153, 155);
             this.txtBoxStreet.Name = "txtBoxStreet";
             this.txtBoxStreet.Size = new System.Drawing.Size(100, 20);
             this.txtBoxStreet.TabIndex = 4;
+            this.txtBoxStreet.Validating += new System.ComponentModel.CancelEventHandler(this.txtBoxStreet_Validating);
+            this.txtBoxStreet.Validated += new System.EventHandler(this.txtBoxStreet_Validated);
             // 
             // txtBoxLastName
             // 
+            this.errorProvider1.SetIconPadding(this.txtBoxLastName, 5);
             this.txtBoxLastName.Location = new System.Drawing.Point(153, 123);
             this.txtBoxLastName.Name = "txtBoxLastName";
             this.txtBoxLastName.Size = new System.Drawing.Size(100, 20);
             this.txtBoxLastName.TabIndex = 3;
+            this.txtBoxLastName.Validating += new System.ComponentModel.CancelEventHandler(this.txtBoxLastName_Validating);
+            this.txtBoxLastName.Validated += new System.EventHandler(this.txtBoxLastName_Validated);
             // 
             // txtBoxFirstName
             // 
+            this.errorProvider1.SetIconPadding(this.txtBoxFirstName, 5);
             this.txtBoxFirstName.Location = new System.Drawing.Point(153, 91);
             this.txtBoxFirstName.Name = "txtBoxFirstName";
             this.txtBoxFirstName.Size = new System.Drawing.Size(100, 20);
             this.txtBoxFirstName.TabIndex = 2;
+            this.txtBoxFirstName.Validating += new System.ComponentModel.CancelEventHandler(this.txtBoxFirstName_Validating);
+            this.txtBoxFirstName.Validated += new System.EventHandler(this.txtBoxFirstName_Validated);
             // 
             // txtBoxCustNum
             // 
@@ -222,23 +264,6 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "Customer Number";
             // 
-            // cboxState
-            // 
-            this.cboxState.FormattingEnabled = true;
-            this.cboxState.Items.AddRange(new object[] {
-            "ACT",
-            "NSW",
-            "NT",
-            "QLD",
-            "SA",
-            "TAS",
-            "VIC",
-            "WA"});
-            this.cboxState.Location = new System.Drawing.Point(153, 218);
-            this.cboxState.Name = "cboxState";
-            this.cboxState.Size = new System.Drawing.Size(67, 21);
-            this.cboxState.TabIndex = 6;
-            // 
             // btnCustSave
             // 
             this.btnCustSave.Location = new System.Drawing.Point(212, 363);
@@ -261,16 +286,30 @@
             // 
             // errorProvider1
             // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
+            // 
+            // lblAllReqd
+            // 
+            this.lblAllReqd.AutoSize = true;
+            this.lblAllReqd.ForeColor = System.Drawing.Color.Red;
+            this.lblAllReqd.Location = new System.Drawing.Point(20, 368);
+            this.lblAllReqd.Name = "lblAllReqd";
+            this.lblAllReqd.Size = new System.Drawing.Size(92, 13);
+            this.lblAllReqd.TabIndex = 37;
+            this.lblAllReqd.Text = "* all fields required";
             // 
             // CustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(392, 402);
+            this.Controls.Add(this.lblAllReqd);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnCustSave);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CustomerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer";
@@ -279,6 +318,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -306,5 +346,6 @@
         private System.Windows.Forms.Button btnCustSave;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label lblAllReqd;
     }
 }

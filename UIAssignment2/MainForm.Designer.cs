@@ -71,12 +71,17 @@
             this.deleteCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnAddCust = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnSearch = new System.Windows.Forms.ToolStripButton();
             this.txtBoxInvSearch = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cboxTheme = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.btnEditCust = new System.Windows.Forms.ToolStripButton();
+            this.btnDeleteCust = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.gBoxCustomerDetails.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -445,68 +450,96 @@
             this.editCustomerToolStripMenuItem,
             this.deleteCustomerToolStripMenuItem});
             this.customerToolStripMenuItem.Name = "customerToolStripMenuItem";
-            this.customerToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.customerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.customerToolStripMenuItem.Text = "Customer";
             // 
             // addCustomerToolStripMenuItem
             // 
             this.addCustomerToolStripMenuItem.Name = "addCustomerToolStripMenuItem";
-            this.addCustomerToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.addCustomerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.addCustomerToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.addCustomerToolStripMenuItem.Text = "Add Customer";
             this.addCustomerToolStripMenuItem.Click += new System.EventHandler(this.addCustomerToolStripMenuItem_Click);
             // 
             // editCustomerToolStripMenuItem
             // 
             this.editCustomerToolStripMenuItem.Name = "editCustomerToolStripMenuItem";
-            this.editCustomerToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.editCustomerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.editCustomerToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.editCustomerToolStripMenuItem.Text = "Edit Customer";
             this.editCustomerToolStripMenuItem.Click += new System.EventHandler(this.editCustomerToolStripMenuItem_Click);
             // 
             // deleteCustomerToolStripMenuItem
             // 
             this.deleteCustomerToolStripMenuItem.Name = "deleteCustomerToolStripMenuItem";
-            this.deleteCustomerToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.deleteCustomerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.deleteCustomerToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.deleteCustomerToolStripMenuItem.Text = "Delete Customer";
             this.deleteCustomerToolStripMenuItem.Click += new System.EventHandler(this.deleteCustomerToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.Linen;
+            this.toolStrip1.BackColor = System.Drawing.Color.Gainsboro;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnAddCust,
+            this.toolStripSeparator2,
             this.btnSearch,
             this.txtBoxInvSearch,
             this.toolStripLabel1,
             this.toolStripSeparator1,
             this.cboxTheme,
-            this.toolStripLabel2});
+            this.toolStripLabel2,
+            this.btnEditCust,
+            this.toolStripSeparator3,
+            this.btnDeleteCust});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.toolStrip1.Size = new System.Drawing.Size(724, 25);
             this.toolStrip1.TabIndex = 43;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // btnAddCust
+            // 
+            this.btnAddCust.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddCust.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAddCust.Image = global::UIAssignment2.Properties.Resources.add;
+            this.btnAddCust.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAddCust.Name = "btnAddCust";
+            this.btnAddCust.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnAddCust.Size = new System.Drawing.Size(23, 22);
+            this.btnAddCust.Text = "Add Customer";
+            this.btnAddCust.Click += new System.EventHandler(this.btnAddCust_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // btnSearch
             // 
+            this.btnSearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.btnSearch.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
             this.btnSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSearch.Name = "btnSearch";
+            this.btnSearch.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnSearch.Size = new System.Drawing.Size(46, 22);
             this.btnSearch.Text = "Search";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtBoxInvSearch
             // 
+            this.txtBoxInvSearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.txtBoxInvSearch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtBoxInvSearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtBoxInvSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
@@ -516,17 +549,20 @@
             // 
             // toolStripLabel1
             // 
+            this.toolStripLabel1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(50, 22);
             this.toolStripLabel1.Text = "Invoices";
             // 
             // toolStripSeparator1
             // 
+            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // cboxTheme
             // 
+            this.cboxTheme.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.cboxTheme.Items.AddRange(new object[] {
             "Default",
             "Dark",
@@ -538,9 +574,39 @@
             // 
             // toolStripLabel2
             // 
+            this.toolStripLabel2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripLabel2.Name = "toolStripLabel2";
             this.toolStripLabel2.Size = new System.Drawing.Size(44, 22);
             this.toolStripLabel2.Text = "Theme";
+            // 
+            // btnEditCust
+            // 
+            this.btnEditCust.BackColor = System.Drawing.Color.Transparent;
+            this.btnEditCust.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEditCust.Image = global::UIAssignment2.Properties.Resources.edit;
+            this.btnEditCust.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEditCust.Name = "btnEditCust";
+            this.btnEditCust.Size = new System.Drawing.Size(23, 22);
+            this.btnEditCust.Text = "toolStripButton1";
+            this.btnEditCust.ToolTipText = "Edit Customer";
+            this.btnEditCust.Click += new System.EventHandler(this.btnEditCust_Click);
+            // 
+            // btnDeleteCust
+            // 
+            this.btnDeleteCust.BackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteCust.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnDeleteCust.Image = global::UIAssignment2.Properties.Resources.delete;
+            this.btnDeleteCust.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDeleteCust.Name = "btnDeleteCust";
+            this.btnDeleteCust.Size = new System.Drawing.Size(23, 22);
+            this.btnDeleteCust.Text = "toolStripButton2";
+            this.btnDeleteCust.ToolTipText = "Delete Customer";
+            this.btnDeleteCust.Click += new System.EventHandler(this.btnDeleteCust_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // MainForm
             // 
@@ -631,6 +697,11 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripComboBox cboxTheme;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripButton btnAddCust;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton btnEditCust;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton btnDeleteCust;
     }
 }
 

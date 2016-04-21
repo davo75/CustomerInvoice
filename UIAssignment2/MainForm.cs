@@ -25,6 +25,9 @@ namespace UIAssignment2
         private int invoiceCount;
         private int customerCount;
 
+        //current theme
+        internal string theme;
+
         public MainForm()
         {
             InitializeComponent();
@@ -117,6 +120,8 @@ namespace UIAssignment2
 
             customers[customerCount] = new Customer(custNum, custFirstName, custLastName, custStreet, custSuburb, custState, custPostCode, custContactNum, custCompany);
             customerCount++;
+            Console.WriteLine("Customer added");
+            
         }
 
         internal void addNewInvoice(Customer cust)
@@ -490,7 +495,11 @@ namespace UIAssignment2
 
         private void addCustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CustomerForm addCustForm = new CustomerForm();
+           showNewCustomerForm();
+        }
+
+        private void showNewCustomerForm() {
+             CustomerForm addCustForm = new CustomerForm();
             addCustForm.FormClosed += new FormClosedEventHandler(addCustForm_FormClosed);
             addCustForm.parent = this;
             addCustForm.purpose = "Add";
@@ -503,10 +512,19 @@ namespace UIAssignment2
             lbCustomers.DataSource = getCustData();
             //refresh the data
             fillCustomerDetails();
+            //select the newly created customer in the customer list box
+            lbCustomers.SelectedValue = customers[customerCount-1].CustNum;
+           
 
         }
 
         private void deleteCustomerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            deleteCustomer();
+            
+        }
+
+        private void deleteCustomer()
         {
             DialogResult deleteConfirm = MessageBox.Show("Are you sure you want to delete customer " + currentSelectedCustomer.CustFirstName + "?",
                                                    "Delete Confirmation",
@@ -519,8 +537,6 @@ namespace UIAssignment2
                 lbCustomers.DataSource = getCustData();
                 fillCustomerDetails();
             }
-            
-            
         }
 
 
@@ -532,12 +548,17 @@ namespace UIAssignment2
 
         private void editCustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            showEditCustomerForm();
+        
+        }
+
+        private void showEditCustomerForm()
+        {
             CustomerForm editCustForm = new CustomerForm();
             editCustForm.FormClosed += new FormClosedEventHandler(addCustForm_FormClosed);
             editCustForm.parent = this;
             editCustForm.purpose = "Edit";
             editCustForm.ShowDialog();
-        
         }
 
         private void txtBoxInvSearch_Click(object sender, EventArgs e)
@@ -584,7 +605,7 @@ namespace UIAssignment2
 
                 if (!found)
                 {
-                    MessageBox.Show("No results for invoice number: " + invoiceNum);
+                    MessageBox.Show("No results for invoice number: " + invoiceNum, "Search Results");
                     //clear any searches in the invoice search text box
                     txtBoxInvSearch.Text = string.Empty;
                 }
@@ -616,6 +637,7 @@ namespace UIAssignment2
             txtBoxInvSearch.AutoCompleteCustomSource = collection;
         }
 
+    
       
 
         private void cboxTheme_SelectedIndexChanged(object sender, EventArgs e)
@@ -623,26 +645,107 @@ namespace UIAssignment2
              
             //string theme = cboxTheme.ComboBox.SelectedValue.ToString();
 
-            string theme = cboxTheme.ComboBox.GetItemText(cboxTheme.ComboBox.SelectedItem);
+             theme = cboxTheme.ComboBox.GetItemText(cboxTheme.ComboBox.SelectedItem);
 
             switch (theme)
             {
                 case "Light":
                     Image lightImage = new Bitmap(UIAssignment2.Properties.Resources.light);
                     this.BackgroundImage = lightImage;
+                    //Customer List Box
+                    groupBox3.ForeColor = Color.White;
+                    groupBox3.BackColor = Color.Transparent;
+                    //Customer Details Box
+                    gBoxCustomerDetails.ForeColor = Color.White;
+                    gBoxCustomerDetails.BackColor = Color.Transparent;
+                    //Invoice List Box
+                    groupBox2.ForeColor = Color.White;
+                    groupBox2.BackColor = Color.Transparent;
+                    //Invoice Details Box
+                    gbInvoiceDetails.ForeColor = Color.White;
+                    gbInvoiceDetails.BackColor = Color.Transparent;
+
+                    dgInvoiceDetails.ForeColor = Color.Black;
+                    //Menu Strip
+                    menuStrip1.ForeColor = Color.White;
+                    menuStrip1.BackColor = Color.Transparent;
+                    //Tool Strip
+                    //toolStrip1.ForeColor = Color.White;
+                    //toolStrip1.BackColor = Color.Gainsboro;
+                    //search button on tool strip
+                   // btnSearch.ForeColor = Color.White;
+                   // btnSearch.BackColor = Color.Transparent;
+                   
                     break;
                 case "Dark":
-                    //Image darkImage = new Bitmap(@"E:\TAFE\UI\Assignments\Assignment 2\Assignment 2 Git\dark.jpg");
                     Image darkImage = new Bitmap(UIAssignment2.Properties.Resources.dark);
                     this.BackgroundImage = darkImage;
-                    //gBoxCustomerDetails.BackgroundImage = darkImage;
-                    //gBoxCustomerDetails.ForeColor = Color.Salmon;
+                    //Customer List Box
+                    groupBox3.ForeColor = Color.White;
+                    groupBox3.BackColor = Color.Transparent;
+                    //Customer Details Box
+                    gBoxCustomerDetails.ForeColor = Color.White;
+                    gBoxCustomerDetails.BackColor = Color.Transparent;
+                    //Invoice List Box
+                    groupBox2.ForeColor = Color.White;
+                    groupBox2.BackColor = Color.Transparent;
+                    //Invoice Details Box
+                    gbInvoiceDetails.ForeColor = Color.White;
+                    gbInvoiceDetails.BackColor = Color.Transparent;
+
+                    dgInvoiceDetails.ForeColor = Color.Black;
+                    //Menu Strip
+                    menuStrip1.ForeColor = Color.White;
+                    menuStrip1.BackColor = Color.Transparent;
+                    //Tool Strip
+                   // toolStrip1.ForeColor = Color.White;
+                    //toolStrip1.BackColor = Color.Gainsboro;
+                    //search button on tool strip
+                   // btnSearch.ForeColor = Color.White;
+                   // btnSearch.BackColor = Color.Transparent;
                     break;
+
                 default:                    
                     this.BackgroundImage = null;
+                    //Customer List Box
+                    groupBox3.ForeColor = SystemColors.ControlText;
+                    groupBox3.BackColor = SystemColors.Control;
+                    //Customer Details Box
+                    gBoxCustomerDetails.ForeColor = SystemColors.ControlText;
+                    gBoxCustomerDetails.BackColor = SystemColors.Control;
+                    //Invoice List Box
+                    groupBox2.ForeColor = SystemColors.ControlText;
+                    groupBox2.BackColor = SystemColors.Control;
+                    //Invoice Details Box
+                    gbInvoiceDetails.ForeColor = SystemColors.ControlText;
+                    gbInvoiceDetails.BackColor = SystemColors.Control;
+                    //Menu Strip
+                    menuStrip1.ForeColor = SystemColors.ControlText;        
+                    menuStrip1.BackColor = SystemColors.Control;
+                    //Tool Strip
+                    toolStrip1.ForeColor = SystemColors.ControlText;
+                    toolStrip1.BackColor = Color.Gainsboro;
+                    //search button on tool strip
+                    btnSearch.ForeColor = SystemColors.ControlText;
+                    btnSearch.BackColor = SystemColors.Control;
                     break;
             }
            
+        }
+
+        private void btnAddCust_Click(object sender, EventArgs e)
+        {
+            showNewCustomerForm();
+        }
+
+        private void btnEditCust_Click(object sender, EventArgs e)
+        {
+            showEditCustomerForm();
+        }
+
+        private void btnDeleteCust_Click(object sender, EventArgs e)
+        {
+            deleteCustomer();
         }
     }
 }

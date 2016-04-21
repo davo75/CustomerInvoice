@@ -42,6 +42,7 @@ namespace UIAssignment2
         private void InvoiceForm_Load(object sender, EventArgs e)
         {
             //tbInvoiceNum.Text = ((CustomerForm)this.Owner).InvoiceToSearch;
+            showTheme(parent.theme);
            
             if (purpose.Equals("Edit Invoice"))
             {
@@ -91,6 +92,38 @@ namespace UIAssignment2
                 dgAddInvoiceItems.UserDeletedRow += new DataGridViewRowEventHandler(dgAddInvoiceItems_UserDeletedRow);
             }
 
+        }
+
+        private void showTheme(string theTheme)
+        {
+
+            switch (theTheme)
+            {
+                case "Light":
+                    Image lightImage = new Bitmap(UIAssignment2.Properties.Resources.light);
+                    this.BackgroundImage = lightImage;
+                    //Customer Details Box
+                    gbInvoice.ForeColor = Color.White;
+                    gbInvoice.BackColor = Color.Transparent;
+                    dgAddInvoiceItems.ForeColor = Color.Black;
+                    break;
+                case "Dark":
+                    Image darkImage = new Bitmap(UIAssignment2.Properties.Resources.dark);
+                    this.BackgroundImage = darkImage;
+                    //Customer Details Box
+                    gbInvoice.ForeColor = Color.White;
+                    gbInvoice.BackColor = Color.Transparent;
+                    dgAddInvoiceItems.ForeColor = Color.Black;
+                    break;
+
+                default:
+                    this.BackgroundImage = null;
+                    //Customer Details Box
+                    gbInvoice.ForeColor = SystemColors.ControlText;
+                    gbInvoice.BackColor = SystemColors.Control;
+                    dgAddInvoiceItems.ForeColor = Color.Black;
+                    break;
+            }
         }
 
         private void addItemToTable(InvoiceItem item) {
