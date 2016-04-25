@@ -127,8 +127,11 @@ namespace UIAssignment2
             addNewInvoice(customers[0]);
             addNewInvoice(customers[0]);
             addNewInvoice(customers[1]);
-            addNewInvoice(customers[4]);
-
+            addNewInvoice(customers[3]);
+            addNewInvoice(customers[4]);            
+            addNewInvoice(customers[5]);
+            addNewInvoice(customers[6]);
+            
             //add some items to the invoices
             addNewInvoiceItem(customers[0].invoices[0], products[0], 2);
             addNewInvoiceItem(customers[0].invoices[0], products[1], 2);
@@ -136,9 +139,14 @@ namespace UIAssignment2
             addNewInvoiceItem(customers[0].invoices[1], products[3], 2);
             addNewInvoiceItem(customers[1].invoices[0], products[4], 3);
             addNewInvoiceItem(customers[1].invoices[0], products[5], 4);
+            addNewInvoiceItem(customers[3].invoices[0], products[1], 1);
+            addNewInvoiceItem(customers[3].invoices[0], products[5], 1);
             addNewInvoiceItem(customers[4].invoices[0], products[0], 2);
             addNewInvoiceItem(customers[4].invoices[0], products[1], 2);
             addNewInvoiceItem(customers[4].invoices[0], products[2], 1);
+            addNewInvoiceItem(customers[5].invoices[0], products[3], 2);
+            addNewInvoiceItem(customers[5].invoices[0], products[5], 1);
+            addNewInvoiceItem(customers[6].invoices[0], products[2], 1);            
         }
 
         /// <summary>
