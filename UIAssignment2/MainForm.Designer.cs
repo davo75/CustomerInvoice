@@ -36,23 +36,23 @@
             this.txtBoxLastName = new System.Windows.Forms.TextBox();
             this.txtBoxFirstName = new System.Windows.Forms.TextBox();
             this.txtBoxCustNum = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPostCode = new System.Windows.Forms.Label();
+            this.lblState = new System.Windows.Forms.Label();
+            this.lblSuburb = new System.Windows.Forms.Label();
+            this.lblPhone = new System.Windows.Forms.Label();
+            this.lblStreet = new System.Windows.Forms.Label();
+            this.lblLastName = new System.Windows.Forms.Label();
+            this.lblFirstName = new System.Windows.Forms.Label();
+            this.lblCustNum = new System.Windows.Forms.Label();
             this.gBoxCustomerDetails = new System.Windows.Forms.GroupBox();
             this.txtBoxCompany = new System.Windows.Forms.TextBox();
             this.lblCompany = new System.Windows.Forms.Label();
             this.txtBoxState = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gBoxInvoices = new System.Windows.Forms.GroupBox();
             this.lbInvoiceNum = new System.Windows.Forms.ListBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.tbSearch = new System.Windows.Forms.TextBox();
+            this.gBoxCustomers = new System.Windows.Forms.GroupBox();
+            this.lblFilter = new System.Windows.Forms.Label();
+            this.tbSearchCust = new System.Windows.Forms.TextBox();
             this.lbCustomers = new System.Windows.Forms.ListBox();
             this.gbInvoiceDetails = new System.Windows.Forms.GroupBox();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -63,32 +63,32 @@
             this.btnAddInvoice = new System.Windows.Forms.Button();
             this.btnEditInvoice = new System.Windows.Forms.Button();
             this.btnDeleteInvoice = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.msFile = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsMain = new System.Windows.Forms.ToolStrip();
             this.btnAddCust = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnSearch = new System.Windows.Forms.ToolStripButton();
             this.txtBoxInvSearch = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.tsLblInvoices = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cboxTheme = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.tslblTheme = new System.Windows.Forms.ToolStripLabel();
             this.btnEditCust = new System.Windows.Forms.ToolStripButton();
-            this.btnDeleteCust = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnDeleteCust = new System.Windows.Forms.ToolStripButton();
             this.gBoxCustomerDetails.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.gBoxInvoices.SuspendLayout();
+            this.gBoxCustomers.SuspendLayout();
             this.gbInvoiceDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoiceDetails)).BeginInit();
-            this.menuStrip1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.msFile.SuspendLayout();
+            this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtBoxPhone
@@ -147,77 +147,77 @@
             this.txtBoxCustNum.Size = new System.Drawing.Size(100, 20);
             this.txtBoxCustNum.TabIndex = 25;
             // 
-            // label8
+            // lblPostCode
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(22, 255);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(56, 13);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "Post Code";
+            this.lblPostCode.AutoSize = true;
+            this.lblPostCode.Location = new System.Drawing.Point(22, 255);
+            this.lblPostCode.Name = "lblPostCode";
+            this.lblPostCode.Size = new System.Drawing.Size(56, 13);
+            this.lblPostCode.TabIndex = 24;
+            this.lblPostCode.Text = "Post Code";
             // 
-            // label7
+            // lblState
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(22, 223);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 13);
-            this.label7.TabIndex = 23;
-            this.label7.Text = "State";
+            this.lblState.AutoSize = true;
+            this.lblState.Location = new System.Drawing.Point(22, 223);
+            this.lblState.Name = "lblState";
+            this.lblState.Size = new System.Drawing.Size(32, 13);
+            this.lblState.TabIndex = 23;
+            this.lblState.Text = "State";
             // 
-            // label6
+            // lblSuburb
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 191);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 13);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "Suburb";
+            this.lblSuburb.AutoSize = true;
+            this.lblSuburb.Location = new System.Drawing.Point(22, 191);
+            this.lblSuburb.Name = "lblSuburb";
+            this.lblSuburb.Size = new System.Drawing.Size(41, 13);
+            this.lblSuburb.TabIndex = 22;
+            this.lblSuburb.Text = "Suburb";
             // 
-            // label5
+            // lblPhone
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(22, 287);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 13);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "Contact Phone";
+            this.lblPhone.AutoSize = true;
+            this.lblPhone.Location = new System.Drawing.Point(22, 287);
+            this.lblPhone.Name = "lblPhone";
+            this.lblPhone.Size = new System.Drawing.Size(78, 13);
+            this.lblPhone.TabIndex = 21;
+            this.lblPhone.Text = "Contact Phone";
             // 
-            // label4
+            // lblStreet
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 159);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 13);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "Street Address";
+            this.lblStreet.AutoSize = true;
+            this.lblStreet.Location = new System.Drawing.Point(22, 159);
+            this.lblStreet.Name = "lblStreet";
+            this.lblStreet.Size = new System.Drawing.Size(76, 13);
+            this.lblStreet.TabIndex = 20;
+            this.lblStreet.Text = "Street Address";
             // 
-            // label3
+            // lblLastName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 127);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 13);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Last Name";
+            this.lblLastName.AutoSize = true;
+            this.lblLastName.Location = new System.Drawing.Point(22, 127);
+            this.lblLastName.Name = "lblLastName";
+            this.lblLastName.Size = new System.Drawing.Size(58, 13);
+            this.lblLastName.TabIndex = 19;
+            this.lblLastName.Text = "Last Name";
             // 
-            // label2
+            // lblFirstName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 95);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 13);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "First Name";
+            this.lblFirstName.AutoSize = true;
+            this.lblFirstName.Location = new System.Drawing.Point(22, 95);
+            this.lblFirstName.Name = "lblFirstName";
+            this.lblFirstName.Size = new System.Drawing.Size(57, 13);
+            this.lblFirstName.TabIndex = 18;
+            this.lblFirstName.Text = "First Name";
             // 
-            // label1
+            // lblCustNum
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Customer Number";
+            this.lblCustNum.AutoSize = true;
+            this.lblCustNum.Location = new System.Drawing.Point(22, 33);
+            this.lblCustNum.Name = "lblCustNum";
+            this.lblCustNum.Size = new System.Drawing.Size(91, 13);
+            this.lblCustNum.TabIndex = 17;
+            this.lblCustNum.Text = "Customer Number";
             // 
             // gBoxCustomerDetails
             // 
@@ -231,14 +231,14 @@
             this.gBoxCustomerDetails.Controls.Add(this.txtBoxLastName);
             this.gBoxCustomerDetails.Controls.Add(this.txtBoxFirstName);
             this.gBoxCustomerDetails.Controls.Add(this.txtBoxCustNum);
-            this.gBoxCustomerDetails.Controls.Add(this.label8);
-            this.gBoxCustomerDetails.Controls.Add(this.label7);
-            this.gBoxCustomerDetails.Controls.Add(this.label6);
-            this.gBoxCustomerDetails.Controls.Add(this.label5);
-            this.gBoxCustomerDetails.Controls.Add(this.label4);
-            this.gBoxCustomerDetails.Controls.Add(this.label3);
-            this.gBoxCustomerDetails.Controls.Add(this.label2);
-            this.gBoxCustomerDetails.Controls.Add(this.label1);
+            this.gBoxCustomerDetails.Controls.Add(this.lblPostCode);
+            this.gBoxCustomerDetails.Controls.Add(this.lblState);
+            this.gBoxCustomerDetails.Controls.Add(this.lblSuburb);
+            this.gBoxCustomerDetails.Controls.Add(this.lblPhone);
+            this.gBoxCustomerDetails.Controls.Add(this.lblStreet);
+            this.gBoxCustomerDetails.Controls.Add(this.lblLastName);
+            this.gBoxCustomerDetails.Controls.Add(this.lblFirstName);
+            this.gBoxCustomerDetails.Controls.Add(this.lblCustNum);
             this.gBoxCustomerDetails.Location = new System.Drawing.Point(198, 59);
             this.gBoxCustomerDetails.Name = "gBoxCustomerDetails";
             this.gBoxCustomerDetails.Size = new System.Drawing.Size(345, 321);
@@ -271,15 +271,15 @@
             this.txtBoxState.Size = new System.Drawing.Size(100, 20);
             this.txtBoxState.TabIndex = 32;
             // 
-            // groupBox2
+            // gBoxInvoices
             // 
-            this.groupBox2.Controls.Add(this.lbInvoiceNum);
-            this.groupBox2.Location = new System.Drawing.Point(568, 59);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(133, 321);
-            this.groupBox2.TabIndex = 36;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Invoices";
+            this.gBoxInvoices.Controls.Add(this.lbInvoiceNum);
+            this.gBoxInvoices.Location = new System.Drawing.Point(568, 59);
+            this.gBoxInvoices.Name = "gBoxInvoices";
+            this.gBoxInvoices.Size = new System.Drawing.Size(133, 321);
+            this.gBoxInvoices.TabIndex = 36;
+            this.gBoxInvoices.TabStop = false;
+            this.gBoxInvoices.Text = "Invoices";
             // 
             // lbInvoiceNum
             // 
@@ -290,34 +290,34 @@
             this.lbInvoiceNum.TabIndex = 1;
             this.lbInvoiceNum.SelectedIndexChanged += new System.EventHandler(this.lbInvoiceNum_SelectedIndexChanged);
             // 
-            // groupBox3
+            // gBoxCustomers
             // 
-            this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.tbSearch);
-            this.groupBox3.Controls.Add(this.lbCustomers);
-            this.groupBox3.Location = new System.Drawing.Point(17, 59);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(156, 321);
-            this.groupBox3.TabIndex = 37;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Customers";
+            this.gBoxCustomers.Controls.Add(this.lblFilter);
+            this.gBoxCustomers.Controls.Add(this.tbSearchCust);
+            this.gBoxCustomers.Controls.Add(this.lbCustomers);
+            this.gBoxCustomers.Location = new System.Drawing.Point(17, 59);
+            this.gBoxCustomers.Name = "gBoxCustomers";
+            this.gBoxCustomers.Size = new System.Drawing.Size(156, 321);
+            this.gBoxCustomers.TabIndex = 37;
+            this.gBoxCustomers.TabStop = false;
+            this.gBoxCustomers.Text = "Customers";
             // 
-            // label9
+            // lblFilter
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 36);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(29, 13);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "Filter";
+            this.lblFilter.AutoSize = true;
+            this.lblFilter.Location = new System.Drawing.Point(21, 36);
+            this.lblFilter.Name = "lblFilter";
+            this.lblFilter.Size = new System.Drawing.Size(29, 13);
+            this.lblFilter.TabIndex = 2;
+            this.lblFilter.Text = "Filter";
             // 
-            // tbSearch
+            // tbSearchCust
             // 
-            this.tbSearch.Location = new System.Drawing.Point(21, 52);
-            this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(115, 20);
-            this.tbSearch.TabIndex = 1;
-            this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
+            this.tbSearchCust.Location = new System.Drawing.Point(21, 52);
+            this.tbSearchCust.Name = "tbSearchCust";
+            this.tbSearchCust.Size = new System.Drawing.Size(115, 20);
+            this.tbSearchCust.TabIndex = 1;
+            this.tbSearchCust.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
             // 
             // lbCustomers
             // 
@@ -423,16 +423,16 @@
             this.btnDeleteInvoice.UseVisualStyleBackColor = true;
             this.btnDeleteInvoice.Click += new System.EventHandler(this.btnDeleteInvoice_Click);
             // 
-            // menuStrip1
+            // msFile
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msFile.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.msFile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(724, 24);
-            this.menuStrip1.TabIndex = 42;
-            this.menuStrip1.Text = "menuStrip1";
+            this.msFile.Location = new System.Drawing.Point(0, 0);
+            this.msFile.Name = "msFile";
+            this.msFile.Size = new System.Drawing.Size(724, 24);
+            this.msFile.TabIndex = 42;
+            this.msFile.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -480,32 +480,33 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // toolStrip1
+            // tsMain
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.Gainsboro;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsMain.BackColor = System.Drawing.Color.Gainsboro;
+            this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAddCust,
             this.toolStripSeparator2,
             this.btnSearch,
             this.txtBoxInvSearch,
-            this.toolStripLabel1,
+            this.tsLblInvoices,
             this.toolStripSeparator1,
             this.cboxTheme,
-            this.toolStripLabel2,
+            this.tslblTheme,
             this.btnEditCust,
             this.toolStripSeparator3,
             this.btnDeleteCust});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStrip1.Size = new System.Drawing.Size(724, 25);
-            this.toolStrip1.TabIndex = 43;
-            this.toolStrip1.Text = "toolStrip1";
+            this.tsMain.Location = new System.Drawing.Point(0, 24);
+            this.tsMain.Name = "tsMain";
+            this.tsMain.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            this.tsMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tsMain.Size = new System.Drawing.Size(724, 25);
+            this.tsMain.TabIndex = 43;
+            this.tsMain.Text = "toolStrip1";
             // 
             // btnAddCust
             // 
@@ -547,12 +548,12 @@
             this.txtBoxInvSearch.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtBoxInvSearch.Size = new System.Drawing.Size(70, 25);
             // 
-            // toolStripLabel1
+            // tsLblInvoices
             // 
-            this.toolStripLabel1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(50, 22);
-            this.toolStripLabel1.Text = "Invoices";
+            this.tsLblInvoices.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsLblInvoices.Name = "tsLblInvoices";
+            this.tsLblInvoices.Size = new System.Drawing.Size(50, 22);
+            this.tsLblInvoices.Text = "Invoices";
             // 
             // toolStripSeparator1
             // 
@@ -572,12 +573,12 @@
             this.cboxTheme.Size = new System.Drawing.Size(75, 25);
             this.cboxTheme.SelectedIndexChanged += new System.EventHandler(this.cboxTheme_SelectedIndexChanged);
             // 
-            // toolStripLabel2
+            // tslblTheme
             // 
-            this.toolStripLabel2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(44, 22);
-            this.toolStripLabel2.Text = "Theme";
+            this.tslblTheme.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tslblTheme.Name = "tslblTheme";
+            this.tslblTheme.Size = new System.Drawing.Size(44, 22);
+            this.tslblTheme.Text = "Theme";
             // 
             // btnEditCust
             // 
@@ -591,6 +592,11 @@
             this.btnEditCust.ToolTipText = "Edit Customer";
             this.btnEditCust.Click += new System.EventHandler(this.btnEditCust_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
             // btnDeleteCust
             // 
             this.btnDeleteCust.BackColor = System.Drawing.Color.Transparent;
@@ -603,28 +609,23 @@
             this.btnDeleteCust.ToolTipText = "Delete Customer";
             this.btnDeleteCust.Click += new System.EventHandler(this.btnDeleteCust_Click);
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 708);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.tsMain);
             this.Controls.Add(this.btnDeleteInvoice);
             this.Controls.Add(this.btnEditInvoice);
             this.Controls.Add(this.btnAddInvoice);
             this.Controls.Add(this.gbInvoiceDetails);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.gBoxCustomers);
+            this.Controls.Add(this.gBoxInvoices);
             this.Controls.Add(this.gBoxCustomerDetails);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.msFile);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.msFile;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
@@ -632,16 +633,16 @@
             this.Text = "ABC Invoice Application";
             this.gBoxCustomerDetails.ResumeLayout(false);
             this.gBoxCustomerDetails.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.gBoxInvoices.ResumeLayout(false);
+            this.gBoxCustomers.ResumeLayout(false);
+            this.gBoxCustomers.PerformLayout();
             this.gbInvoiceDetails.ResumeLayout(false);
             this.gbInvoiceDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoiceDetails)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.msFile.ResumeLayout(false);
+            this.msFile.PerformLayout();
+            this.tsMain.ResumeLayout(false);
+            this.tsMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -656,17 +657,17 @@
         private System.Windows.Forms.TextBox txtBoxLastName;
         private System.Windows.Forms.TextBox txtBoxFirstName;
         private System.Windows.Forms.TextBox txtBoxCustNum;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPostCode;
+        private System.Windows.Forms.Label lblState;
+        private System.Windows.Forms.Label lblSuburb;
+        private System.Windows.Forms.Label lblPhone;
+        private System.Windows.Forms.Label lblStreet;
+        private System.Windows.Forms.Label lblLastName;
+        private System.Windows.Forms.Label lblFirstName;
+        private System.Windows.Forms.Label lblCustNum;
         private System.Windows.Forms.GroupBox gBoxCustomerDetails;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gBoxInvoices;
+        private System.Windows.Forms.GroupBox gBoxCustomers;
         private System.Windows.Forms.GroupBox gbInvoiceDetails;
         private System.Windows.Forms.Button btnAddInvoice;
         private System.Windows.Forms.Button btnEditInvoice;
@@ -678,25 +679,25 @@
         private System.Windows.Forms.Label lblTotalInvoiceCost;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label lblPaymentStatus;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox tbSearch;
+        private System.Windows.Forms.Label lblFilter;
+        private System.Windows.Forms.TextBox tbSearchCust;
         private System.Windows.Forms.TextBox txtBoxState;
         private System.Windows.Forms.TextBox txtBoxCompany;
         private System.Windows.Forms.Label lblCompany;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip msFile;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addCustomerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editCustomerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteCustomerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStrip tsMain;
+        private System.Windows.Forms.ToolStripLabel tsLblInvoices;
         private System.Windows.Forms.ToolStripTextBox txtBoxInvSearch;
         private System.Windows.Forms.ToolStripButton btnSearch;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripComboBox cboxTheme;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripLabel tslblTheme;
         private System.Windows.Forms.ToolStripButton btnAddCust;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btnEditCust;

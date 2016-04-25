@@ -31,16 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvoiceForm));
             this.gbInvoice = new System.Windows.Forms.GroupBox();
             this.txtBoxInvoiceTotal = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblInvoiceTotal = new System.Windows.Forms.Label();
             this.dgAddInvoiceItems = new System.Windows.Forms.DataGridView();
             this.cboxPaidStatus = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblPayStatus = new System.Windows.Forms.Label();
             this.paymentDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblPayDue = new System.Windows.Forms.Label();
             this.tbInvoiceNum = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblInvoiceNum = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.gbInvoice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAddInvoiceItems)).BeginInit();
             this.SuspendLayout();
@@ -48,14 +48,14 @@
             // gbInvoice
             // 
             this.gbInvoice.Controls.Add(this.txtBoxInvoiceTotal);
-            this.gbInvoice.Controls.Add(this.label4);
+            this.gbInvoice.Controls.Add(this.lblInvoiceTotal);
             this.gbInvoice.Controls.Add(this.dgAddInvoiceItems);
             this.gbInvoice.Controls.Add(this.cboxPaidStatus);
-            this.gbInvoice.Controls.Add(this.label3);
+            this.gbInvoice.Controls.Add(this.lblPayStatus);
             this.gbInvoice.Controls.Add(this.paymentDatePicker);
-            this.gbInvoice.Controls.Add(this.label2);
+            this.gbInvoice.Controls.Add(this.lblPayDue);
             this.gbInvoice.Controls.Add(this.tbInvoiceNum);
-            this.gbInvoice.Controls.Add(this.label1);
+            this.gbInvoice.Controls.Add(this.lblInvoiceNum);
             this.gbInvoice.Location = new System.Drawing.Point(12, 12);
             this.gbInvoice.Name = "gbInvoice";
             this.gbInvoice.Size = new System.Drawing.Size(556, 418);
@@ -72,15 +72,15 @@
             this.txtBoxInvoiceTotal.TabIndex = 8;
             this.txtBoxInvoiceTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label4
+            // lblInvoiceTotal
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(370, 383);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Invoice Total:";
+            this.lblInvoiceTotal.AutoSize = true;
+            this.lblInvoiceTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvoiceTotal.Location = new System.Drawing.Point(370, 383);
+            this.lblInvoiceTotal.Name = "lblInvoiceTotal";
+            this.lblInvoiceTotal.Size = new System.Drawing.Size(86, 13);
+            this.lblInvoiceTotal.TabIndex = 7;
+            this.lblInvoiceTotal.Text = "Invoice Total:";
             // 
             // dgAddInvoiceItems
             // 
@@ -102,14 +102,14 @@
             this.cboxPaidStatus.Text = "Paid";
             this.cboxPaidStatus.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // lblPayStatus
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 114);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Payment Status";
+            this.lblPayStatus.AutoSize = true;
+            this.lblPayStatus.Location = new System.Drawing.Point(19, 114);
+            this.lblPayStatus.Name = "lblPayStatus";
+            this.lblPayStatus.Size = new System.Drawing.Size(81, 13);
+            this.lblPayStatus.TabIndex = 4;
+            this.lblPayStatus.Text = "Payment Status";
             // 
             // paymentDatePicker
             // 
@@ -119,14 +119,14 @@
             this.paymentDatePicker.Size = new System.Drawing.Size(100, 20);
             this.paymentDatePicker.TabIndex = 3;
             // 
-            // label2
+            // lblPayDue
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 73);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Payment Due Date";
+            this.lblPayDue.AutoSize = true;
+            this.lblPayDue.Location = new System.Drawing.Point(19, 73);
+            this.lblPayDue.Name = "lblPayDue";
+            this.lblPayDue.Size = new System.Drawing.Size(97, 13);
+            this.lblPayDue.TabIndex = 2;
+            this.lblPayDue.Text = "Payment Due Date";
             // 
             // tbInvoiceNum
             // 
@@ -136,14 +136,14 @@
             this.tbInvoiceNum.Size = new System.Drawing.Size(100, 20);
             this.tbInvoiceNum.TabIndex = 1;
             // 
-            // label1
+            // lblInvoiceNum
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Invoice Number";
+            this.lblInvoiceNum.AutoSize = true;
+            this.lblInvoiceNum.Location = new System.Drawing.Point(19, 32);
+            this.lblInvoiceNum.Name = "lblInvoiceNum";
+            this.lblInvoiceNum.Size = new System.Drawing.Size(82, 13);
+            this.lblInvoiceNum.TabIndex = 0;
+            this.lblInvoiceNum.Text = "Invoice Number";
             // 
             // btnSave
             // 
@@ -155,22 +155,22 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btnCancel
             // 
-            this.button2.Location = new System.Drawing.Point(493, 442);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnCancel.Location = new System.Drawing.Point(493, 442);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.button2_Click);
             // 
             // InvoiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 481);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbInvoice);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -193,14 +193,14 @@
         private System.Windows.Forms.GroupBox gbInvoice;
         private System.Windows.Forms.DataGridView dgAddInvoiceItems;
         private System.Windows.Forms.CheckBox cboxPaidStatus;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblPayStatus;
         private System.Windows.Forms.DateTimePicker paymentDatePicker;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblPayDue;
         private System.Windows.Forms.TextBox tbInvoiceNum;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblInvoiceNum;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtBoxInvoiceTotal;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblInvoiceTotal;
     }
 }

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerForm));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gBoxCustFormDetails = new System.Windows.Forms.GroupBox();
             this.cboxState = new System.Windows.Forms.ComboBox();
             this.txtBoxCompany = new System.Windows.Forms.TextBox();
             this.lblCompany = new System.Windows.Forms.Label();
@@ -41,48 +41,48 @@
             this.txtBoxLastName = new System.Windows.Forms.TextBox();
             this.txtBoxFirstName = new System.Windows.Forms.TextBox();
             this.txtBoxCustNum = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPostCode = new System.Windows.Forms.Label();
+            this.lblState = new System.Windows.Forms.Label();
+            this.lblSuburb = new System.Windows.Forms.Label();
+            this.lblPhone = new System.Windows.Forms.Label();
+            this.lblStreet = new System.Windows.Forms.Label();
+            this.lblLastName = new System.Windows.Forms.Label();
+            this.lblFirstName = new System.Windows.Forms.Label();
+            this.lblCustNumber = new System.Windows.Forms.Label();
             this.btnCustSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblAllReqd = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.gBoxCustFormDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // gBoxCustFormDetails
             // 
-            this.groupBox1.Controls.Add(this.cboxState);
-            this.groupBox1.Controls.Add(this.txtBoxCompany);
-            this.groupBox1.Controls.Add(this.lblCompany);
-            this.groupBox1.Controls.Add(this.txtBoxPhone);
-            this.groupBox1.Controls.Add(this.txtBoxPostCode);
-            this.groupBox1.Controls.Add(this.txtBoxSuburb);
-            this.groupBox1.Controls.Add(this.txtBoxStreet);
-            this.groupBox1.Controls.Add(this.txtBoxLastName);
-            this.groupBox1.Controls.Add(this.txtBoxFirstName);
-            this.groupBox1.Controls.Add(this.txtBoxCustNum);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(23, 25);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(345, 321);
-            this.groupBox1.TabIndex = 36;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Customer Details";
+            this.gBoxCustFormDetails.Controls.Add(this.cboxState);
+            this.gBoxCustFormDetails.Controls.Add(this.txtBoxCompany);
+            this.gBoxCustFormDetails.Controls.Add(this.lblCompany);
+            this.gBoxCustFormDetails.Controls.Add(this.txtBoxPhone);
+            this.gBoxCustFormDetails.Controls.Add(this.txtBoxPostCode);
+            this.gBoxCustFormDetails.Controls.Add(this.txtBoxSuburb);
+            this.gBoxCustFormDetails.Controls.Add(this.txtBoxStreet);
+            this.gBoxCustFormDetails.Controls.Add(this.txtBoxLastName);
+            this.gBoxCustFormDetails.Controls.Add(this.txtBoxFirstName);
+            this.gBoxCustFormDetails.Controls.Add(this.txtBoxCustNum);
+            this.gBoxCustFormDetails.Controls.Add(this.lblPostCode);
+            this.gBoxCustFormDetails.Controls.Add(this.lblState);
+            this.gBoxCustFormDetails.Controls.Add(this.lblSuburb);
+            this.gBoxCustFormDetails.Controls.Add(this.lblPhone);
+            this.gBoxCustFormDetails.Controls.Add(this.lblStreet);
+            this.gBoxCustFormDetails.Controls.Add(this.lblLastName);
+            this.gBoxCustFormDetails.Controls.Add(this.lblFirstName);
+            this.gBoxCustFormDetails.Controls.Add(this.lblCustNumber);
+            this.gBoxCustFormDetails.Location = new System.Drawing.Point(23, 25);
+            this.gBoxCustFormDetails.Name = "gBoxCustFormDetails";
+            this.gBoxCustFormDetails.Size = new System.Drawing.Size(345, 321);
+            this.gBoxCustFormDetails.TabIndex = 36;
+            this.gBoxCustFormDetails.TabStop = false;
+            this.gBoxCustFormDetails.Text = "Customer Details";
             // 
             // cboxState
             // 
@@ -192,77 +192,77 @@
             this.txtBoxCustNum.Size = new System.Drawing.Size(100, 20);
             this.txtBoxCustNum.TabIndex = 25;
             // 
-            // label8
+            // lblPostCode
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(22, 255);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(56, 13);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "Post Code";
+            this.lblPostCode.AutoSize = true;
+            this.lblPostCode.Location = new System.Drawing.Point(22, 255);
+            this.lblPostCode.Name = "lblPostCode";
+            this.lblPostCode.Size = new System.Drawing.Size(56, 13);
+            this.lblPostCode.TabIndex = 24;
+            this.lblPostCode.Text = "Post Code";
             // 
-            // label7
+            // lblState
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(22, 223);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 13);
-            this.label7.TabIndex = 23;
-            this.label7.Text = "State";
+            this.lblState.AutoSize = true;
+            this.lblState.Location = new System.Drawing.Point(22, 223);
+            this.lblState.Name = "lblState";
+            this.lblState.Size = new System.Drawing.Size(32, 13);
+            this.lblState.TabIndex = 23;
+            this.lblState.Text = "State";
             // 
-            // label6
+            // lblSuburb
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 191);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 13);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "Suburb";
+            this.lblSuburb.AutoSize = true;
+            this.lblSuburb.Location = new System.Drawing.Point(22, 191);
+            this.lblSuburb.Name = "lblSuburb";
+            this.lblSuburb.Size = new System.Drawing.Size(41, 13);
+            this.lblSuburb.TabIndex = 22;
+            this.lblSuburb.Text = "Suburb";
             // 
-            // label5
+            // lblPhone
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(22, 287);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 13);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "Contact Phone";
+            this.lblPhone.AutoSize = true;
+            this.lblPhone.Location = new System.Drawing.Point(22, 287);
+            this.lblPhone.Name = "lblPhone";
+            this.lblPhone.Size = new System.Drawing.Size(78, 13);
+            this.lblPhone.TabIndex = 21;
+            this.lblPhone.Text = "Contact Phone";
             // 
-            // label4
+            // lblStreet
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 159);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 13);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "Street Address";
+            this.lblStreet.AutoSize = true;
+            this.lblStreet.Location = new System.Drawing.Point(22, 159);
+            this.lblStreet.Name = "lblStreet";
+            this.lblStreet.Size = new System.Drawing.Size(76, 13);
+            this.lblStreet.TabIndex = 20;
+            this.lblStreet.Text = "Street Address";
             // 
-            // label3
+            // lblLastName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 127);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 13);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Last Name";
+            this.lblLastName.AutoSize = true;
+            this.lblLastName.Location = new System.Drawing.Point(22, 127);
+            this.lblLastName.Name = "lblLastName";
+            this.lblLastName.Size = new System.Drawing.Size(58, 13);
+            this.lblLastName.TabIndex = 19;
+            this.lblLastName.Text = "Last Name";
             // 
-            // label2
+            // lblFirstName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 95);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 13);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "First Name";
+            this.lblFirstName.AutoSize = true;
+            this.lblFirstName.Location = new System.Drawing.Point(22, 95);
+            this.lblFirstName.Name = "lblFirstName";
+            this.lblFirstName.Size = new System.Drawing.Size(57, 13);
+            this.lblFirstName.TabIndex = 18;
+            this.lblFirstName.Text = "First Name";
             // 
-            // label1
+            // lblCustNumber
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Customer Number";
+            this.lblCustNumber.AutoSize = true;
+            this.lblCustNumber.Location = new System.Drawing.Point(22, 33);
+            this.lblCustNumber.Name = "lblCustNumber";
+            this.lblCustNumber.Size = new System.Drawing.Size(91, 13);
+            this.lblCustNumber.TabIndex = 17;
+            this.lblCustNumber.Text = "Customer Number";
             // 
             // btnCustSave
             // 
@@ -307,15 +307,15 @@
             this.Controls.Add(this.lblAllReqd);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnCustSave);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gBoxCustFormDetails);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CustomerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer";
             this.Load += new System.EventHandler(this.CustomerForm_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gBoxCustFormDetails.ResumeLayout(false);
+            this.gBoxCustFormDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -324,7 +324,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gBoxCustFormDetails;
         private System.Windows.Forms.ComboBox cboxState;
         private System.Windows.Forms.TextBox txtBoxCompany;
         private System.Windows.Forms.Label lblCompany;
@@ -335,14 +335,14 @@
         private System.Windows.Forms.TextBox txtBoxLastName;
         private System.Windows.Forms.TextBox txtBoxFirstName;
         private System.Windows.Forms.TextBox txtBoxCustNum;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPostCode;
+        private System.Windows.Forms.Label lblState;
+        private System.Windows.Forms.Label lblSuburb;
+        private System.Windows.Forms.Label lblPhone;
+        private System.Windows.Forms.Label lblStreet;
+        private System.Windows.Forms.Label lblLastName;
+        private System.Windows.Forms.Label lblFirstName;
+        private System.Windows.Forms.Label lblCustNumber;
         private System.Windows.Forms.Button btnCustSave;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ErrorProvider errorProvider1;
