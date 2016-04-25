@@ -35,24 +35,28 @@
             this.dgAddInvoiceItems = new System.Windows.Forms.DataGridView();
             this.cboxPaidStatus = new System.Windows.Forms.CheckBox();
             this.lblPayStatus = new System.Windows.Forms.Label();
-            this.paymentDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.paymentDueDatePicker = new System.Windows.Forms.DateTimePicker();
             this.lblPayDue = new System.Windows.Forms.Label();
             this.tbInvoiceNum = new System.Windows.Forms.TextBox();
             this.lblInvoiceNum = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.lblDatePaid = new System.Windows.Forms.Label();
+            this.paymentDatePicker = new System.Windows.Forms.DateTimePicker();
             this.gbInvoice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAddInvoiceItems)).BeginInit();
             this.SuspendLayout();
             // 
             // gbInvoice
             // 
+            this.gbInvoice.Controls.Add(this.paymentDatePicker);
+            this.gbInvoice.Controls.Add(this.lblDatePaid);
             this.gbInvoice.Controls.Add(this.txtBoxInvoiceTotal);
             this.gbInvoice.Controls.Add(this.lblInvoiceTotal);
             this.gbInvoice.Controls.Add(this.dgAddInvoiceItems);
             this.gbInvoice.Controls.Add(this.cboxPaidStatus);
             this.gbInvoice.Controls.Add(this.lblPayStatus);
-            this.gbInvoice.Controls.Add(this.paymentDatePicker);
+            this.gbInvoice.Controls.Add(this.paymentDueDatePicker);
             this.gbInvoice.Controls.Add(this.lblPayDue);
             this.gbInvoice.Controls.Add(this.tbInvoiceNum);
             this.gbInvoice.Controls.Add(this.lblInvoiceNum);
@@ -95,12 +99,13 @@
             // cboxPaidStatus
             // 
             this.cboxPaidStatus.AutoSize = true;
-            this.cboxPaidStatus.Location = new System.Drawing.Point(128, 114);
+            this.cboxPaidStatus.Location = new System.Drawing.Point(128, 112);
             this.cboxPaidStatus.Name = "cboxPaidStatus";
             this.cboxPaidStatus.Size = new System.Drawing.Size(47, 17);
             this.cboxPaidStatus.TabIndex = 5;
             this.cboxPaidStatus.Text = "Paid";
             this.cboxPaidStatus.UseVisualStyleBackColor = true;
+            this.cboxPaidStatus.CheckedChanged += new System.EventHandler(this.cboxPaidStatus_CheckedChanged);
             // 
             // lblPayStatus
             // 
@@ -111,13 +116,13 @@
             this.lblPayStatus.TabIndex = 4;
             this.lblPayStatus.Text = "Payment Status";
             // 
-            // paymentDatePicker
+            // paymentDueDatePicker
             // 
-            this.paymentDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.paymentDatePicker.Location = new System.Drawing.Point(128, 71);
-            this.paymentDatePicker.Name = "paymentDatePicker";
-            this.paymentDatePicker.Size = new System.Drawing.Size(100, 20);
-            this.paymentDatePicker.TabIndex = 3;
+            this.paymentDueDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.paymentDueDatePicker.Location = new System.Drawing.Point(128, 71);
+            this.paymentDueDatePicker.Name = "paymentDueDatePicker";
+            this.paymentDueDatePicker.Size = new System.Drawing.Size(100, 20);
+            this.paymentDueDatePicker.TabIndex = 3;
             // 
             // lblPayDue
             // 
@@ -165,6 +170,23 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.button2_Click);
             // 
+            // lblDatePaid
+            // 
+            this.lblDatePaid.AutoSize = true;
+            this.lblDatePaid.Location = new System.Drawing.Point(192, 114);
+            this.lblDatePaid.Name = "lblDatePaid";
+            this.lblDatePaid.Size = new System.Drawing.Size(54, 13);
+            this.lblDatePaid.TabIndex = 9;
+            this.lblDatePaid.Text = "Date Paid";
+            // 
+            // paymentDatePicker
+            // 
+            this.paymentDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.paymentDatePicker.Location = new System.Drawing.Point(264, 112);
+            this.paymentDatePicker.Name = "paymentDatePicker";
+            this.paymentDatePicker.Size = new System.Drawing.Size(100, 20);
+            this.paymentDatePicker.TabIndex = 10;
+            // 
             // InvoiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -194,7 +216,7 @@
         private System.Windows.Forms.DataGridView dgAddInvoiceItems;
         private System.Windows.Forms.CheckBox cboxPaidStatus;
         private System.Windows.Forms.Label lblPayStatus;
-        private System.Windows.Forms.DateTimePicker paymentDatePicker;
+        private System.Windows.Forms.DateTimePicker paymentDueDatePicker;
         private System.Windows.Forms.Label lblPayDue;
         private System.Windows.Forms.TextBox tbInvoiceNum;
         private System.Windows.Forms.Label lblInvoiceNum;
@@ -202,5 +224,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtBoxInvoiceTotal;
         private System.Windows.Forms.Label lblInvoiceTotal;
+        private System.Windows.Forms.DateTimePicker paymentDatePicker;
+        private System.Windows.Forms.Label lblDatePaid;
     }
 }

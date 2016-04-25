@@ -292,6 +292,7 @@
             // lblAllReqd
             // 
             this.lblAllReqd.AutoSize = true;
+            this.lblAllReqd.BackColor = System.Drawing.Color.Transparent;
             this.lblAllReqd.ForeColor = System.Drawing.Color.Red;
             this.lblAllReqd.Location = new System.Drawing.Point(20, 368);
             this.lblAllReqd.Name = "lblAllReqd";

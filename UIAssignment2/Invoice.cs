@@ -23,9 +23,13 @@ namespace UIAssignment2
         /// </summary>
         private string invoiceNum;
         /// <summary>
-        /// The payment status of the invoice. True if paid, false if unpaid.
+        /// The payment status type - Paid, Unpaid or Overdue
         /// </summary>
-        private bool paidStatus;
+        public enum PaidStatus { Paid, Unpaid, Overdue };
+        /// <summary>
+        /// The payment status of the invoice
+        /// </summary>
+        private PaidStatus paymentStatus;
         /// <summary>
         /// Associated invoice items for the invoices
         /// </summary>
@@ -33,7 +37,11 @@ namespace UIAssignment2
         /// <summary>
         /// The date payment for the invoice is due
         /// </summary>
-        private DateTime paymentDate;
+        private DateTime paymentDueDate;
+        /// <summary>
+        /// The date the payment was made
+        /// </summary>
+        private DateTime? paymentDate;
         /// <summary>
         /// The total cost of the invoice
         /// </summary>
@@ -43,12 +51,13 @@ namespace UIAssignment2
         /// Constructor sets the invoice number, payment date and default values for payment date, payment status, total cost and initialises a list of items
         /// </summary>
         /// <param name="invoiceNum">The invoice number</param>
-        /// <param name="paymentDate">The due date for invoice payment</param>
-        public Invoice(string invoiceNum, DateTime paymentDate)
+        /// <param name="paymentDueDate">The due date for invoice payment</param>
+        public Invoice(string invoiceNum, DateTime paymentDueDate)
         {
             this.InvoiceNum = invoiceNum;
-            this.PaymentDate = paymentDate;
-            this.PaidStatus = false;
+            this.PaymentDueDate = paymentDueDate;
+            this.PaymentDate = null;
+            this.PaymentStatus = PaidStatus.Unpaid;
             this.TotalCost = 0.00m;
             invoiceItems = new List<InvoiceItem>();
         }
@@ -57,15 +66,16 @@ namespace UIAssignment2
         /// Constructor sets the invoice number, payment date, payment date, payment status, total cost and list of items
         /// </summary>
         /// <param name="invoiceNum">Invoice number</param>
-        /// <param name="paymentDate">Due date for invoice payment</param>
+        /// <param name="paymentDueDate">Due date for invoice payment</param>
         /// <param name="paymentStatus">Payment status of the invoice</param>
         /// <param name="totalCost">Total cost of the invoice</param>
         /// <param name="items">The items on the invoice</param>
-        public Invoice(string invoiceNum, DateTime paymentDate, bool paymentStatus, decimal totalCost, List<InvoiceItem> items)
+        public Invoice(string invoiceNum, DateTime paymentDueDate, DateTime? paymentDate, PaidStatus paymentStatus, decimal totalCost, List<InvoiceItem> items)
         {
             this.InvoiceNum = invoiceNum;
+            this.PaymentDueDate = paymentDueDate;
             this.PaymentDate = paymentDate;
-            this.PaidStatus = paymentStatus;
+            this.PaymentStatus = paymentStatus;
             this.TotalCost = totalCost;
             invoiceItems = items;
         }
@@ -114,19 +124,29 @@ namespace UIAssignment2
         /// <summary>
         /// The payment due date for an invoice
         /// </summary>
-        public DateTime PaymentDate
+        public DateTime PaymentDueDate
+        {
+            get { return paymentDueDate; }
+            set { paymentDueDate = value; }
+        }
+
+
+        /// <summary>
+        /// The date the invoice was paid
+        /// </summary>
+        public DateTime? PaymentDate
         {
             get { return paymentDate; }
             set { paymentDate = value; }
         }
 
         /// <summary>
-        /// The payment status of an invoice. True if paid, false if unpaid.
+        /// The payment status of an invoice. Paid, Unpaid or Overdue.
         /// </summary>
-        public bool PaidStatus
+        public PaidStatus PaymentStatus
         {
-            get { return paidStatus; }
-            set { paidStatus = value; }
+            get { return paymentStatus; }
+            set { paymentStatus = value; }
         }
 
         /// <summary>

@@ -66,7 +66,9 @@ namespace UIAssignment2
         public InvoiceForm()
         {
             InitializeComponent();
-            //set the format for the data picker
+            //set the format for the date pickers
+            paymentDueDatePicker.CustomFormat = "dd/MM/yyyy";
+            paymentDueDatePicker.Format = DateTimePickerFormat.Custom;
             paymentDatePicker.CustomFormat = "dd/MM/yyyy";
             paymentDatePicker.Format = DateTimePickerFormat.Custom;
         }
@@ -108,9 +110,22 @@ namespace UIAssignment2
                 invoiceToEdit = parent.currentSelectedCustomer.findInvoice(parent.InvoiceToSearch);
 
                 //set the payment due date
-                paymentDatePicker.Value = invoiceToEdit.PaymentDate;
+                paymentDueDatePicker.Value = invoiceToEdit.PaymentDueDate;
                 //set the payment status
-                cboxPaidStatus.Checked = invoiceToEdit.PaidStatus;
+                if (invoiceToEdit.PaymentStatus == Invoice.PaidStatus.Paid)
+                {
+                    cboxPaidStatus.Checked = true;
+                    lblDatePaid.Visible = true;
+                    paymentDatePicker.Visible = true;
+                    DateTime paidDate = invoiceToEdit.PaymentDate ?? DateTime.Now;
+                    paymentDatePicker.Value = paidDate;
+                }
+                else
+                {
+                    lblDatePaid.Visible = false;
+                    paymentDatePicker.Visible = false;                    
+                }
+                
 
                 //get the list of items for the invoice
                 List<Item> products = parent.products;
@@ -139,6 +154,9 @@ namespace UIAssignment2
                 invoiceTotal = 0;
                 //get a new invoice number
                 tbInvoiceNum.Text = parent.getNewInvoiceNum();
+                //hide the payment date lable and date picker
+                lblDatePaid.Visible = false;
+                paymentDatePicker.Visible = false;  
                 //populate the item combobox
                 List<Item> products = parent.products;
                 //add column headers to item table
@@ -408,9 +426,24 @@ namespace UIAssignment2
             //set invoice number
             string invoiceNum = tbInvoiceNum.Text;
             //set the payment date
-            DateTime paymentDate = paymentDatePicker.Value;
+            DateTime paymentDueDate = paymentDueDatePicker.Value;
+            //paid date
+            DateTime? paymentDate = null;
             //set payment status
-            bool payStatus = cboxPaidStatus.Checked;
+            Invoice.PaidStatus payStatus = Invoice.PaidStatus.Unpaid; 
+
+            //check if payment overdue
+            if (DateTime.Compare(DateTime.Today,paymentDueDate) > 0) {
+                payStatus = Invoice.PaidStatus.Overdue;
+            }
+            
+            //check if invoice has been paid
+            if (cboxPaidStatus.Checked)
+            {
+                payStatus = Invoice.PaidStatus.Paid;
+                paymentDate = paymentDatePicker.Value;
+            }
+            
             //set invoice total
             decimal invCost = invoiceTotal;
             //create new list of invoice items
@@ -440,10 +473,12 @@ namespace UIAssignment2
                     }
                 }
             }
+            //set the payment due date
+            invoiceToEdit.PaymentDueDate = paymentDueDate;
             //set the payment date
             invoiceToEdit.PaymentDate = paymentDate;
             //set the payment status
-            invoiceToEdit.PaidStatus = payStatus;
+            invoiceToEdit.PaymentStatus = payStatus;
             //set the invoice items
             invoiceToEdit.InvoiceItems = invItems;
             //set the invoice total cost
@@ -458,9 +493,23 @@ namespace UIAssignment2
             //get invoice number
             string invoiceNum = tbInvoiceNum.Text;
             //get payment due date
-            DateTime paymentDate = paymentDatePicker.Value;
-            //get the payment status
-            bool payStatus = cboxPaidStatus.Checked;
+            DateTime paymentDueDate = paymentDueDatePicker.Value;
+            //paid date
+            DateTime? paymentDate = null;
+            //get payment status
+            Invoice.PaidStatus payStatus = Invoice.PaidStatus.Unpaid;
+            //check if overdue
+            if (DateTime.Compare(DateTime.Today, paymentDueDate) > 0)
+            {
+                payStatus = Invoice.PaidStatus.Overdue;
+            }
+
+            //check if invoice has been paid
+            if (cboxPaidStatus.Checked)
+            {
+                payStatus = Invoice.PaidStatus.Paid;
+                paymentDate = paymentDatePicker.Value;
+            }
             //get the invoice total
             decimal invCost = invoiceTotal;
             //create new list of invoice items
@@ -489,9 +538,9 @@ namespace UIAssignment2
                         Console.WriteLine("Item not found");
                     }
                 }
-
+                
                 //create the new invoice form user input
-                Invoice invToAdd = new Invoice(invoiceNum, paymentDate, payStatus, invCost, invItems);
+                Invoice invToAdd = new Invoice(invoiceNum, paymentDueDate, paymentDate, payStatus, invCost, invItems);
                 //add the invoice for the customer
                 parent.currentSelectedCustomer.addInvoice(invToAdd);
                 //increment invoice counter. This is used when generating a new invoice number.
@@ -519,6 +568,29 @@ namespace UIAssignment2
             }
             //return item 
             return itemToFind;
+        }
+
+        /// <summary>
+        /// Makes the Date Paid lable and Date Paid date picker UI components visible if Paid checkbox checked 
+        /// otherwise it hides them
+        /// </summary>
+        /// <param name="sender">Object source</param>
+        /// <param name="e">Event arguments</param>
+        private void cboxPaidStatus_CheckedChanged(object sender, EventArgs e)
+        {
+            //if the Paid checkbox is checked
+            if (cboxPaidStatus.Checked)
+            {
+                //show the Date Paid label and date picker
+                lblDatePaid.Visible = true;
+                paymentDatePicker.Visible = true;
+            }
+            //hide the lable and date picker
+            else
+            {
+                lblDatePaid.Visible = false;
+                paymentDatePicker.Visible = false;
+            }
         }
     }
 }

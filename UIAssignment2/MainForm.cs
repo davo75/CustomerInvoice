@@ -47,6 +47,10 @@ namespace UIAssignment2
         /// </summary>
         private string invoiceToSearch;
         /// <summary>
+        /// Customer number that was edited
+        /// </summary>
+        private string customerNumThatWasEdited;
+        /// <summary>
         /// Invoice number that was edited
         /// </summary>
         private int invoiceNumThatWasEdited;
@@ -175,6 +179,38 @@ namespace UIAssignment2
 
             //set the theme for the form to default
             cboxTheme.ComboBox.SelectedIndex = 0;
+
+            //set any overdue invoices
+            setOverdueInvoices();
+        }
+
+        /// <summary>
+        /// Sets the status of invoices to overdue if the payment due date is past the current date
+        /// </summary>
+        private void setOverdueInvoices()
+        {
+            //go through all customers
+            foreach (Customer cust in customers)
+            {
+                //if a customer exists
+                if (cust != null)
+                {
+                    //go through all the invoices
+                    foreach (Invoice invoices in cust.invoices)
+                    {
+                        //if an invoice exists
+                        if (invoices != null)
+                        {
+                            //compare today's date with the payment due date.
+                            if (DateTime.Compare(DateTime.Today,invoices.PaymentDueDate) > 0)
+                            {
+                                //if overdue set the payment status for the invoice to overdue
+                                invoices.PaymentStatus = Invoice.PaidStatus.Overdue;
+                            }
+                        }                        
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -466,22 +502,28 @@ namespace UIAssignment2
         private string getPaymentStatus(Invoice inv)
         {
             //status message
-            string status;
+            string status="";
 
-            //if invoice paid
-            if (inv.PaidStatus)
+            switch (inv.PaymentStatus)
             {
-                //construct paid message
-                status = "Paid on " + inv.PaymentDate.ToString("dd/MM/yyyy");
-                lblStatus.ForeColor = System.Drawing.Color.Green;
+                case Invoice.PaidStatus.Paid:
+                    //construct paid message    
+                    DateTime paidDate = inv.PaymentDate ?? DateTime.Now;
+                    status = "Paid on " + paidDate.ToString("dd/MM/yyy");
+                    lblStatus.ForeColor = System.Drawing.Color.Green;
+                    break;
+                case Invoice.PaidStatus.Unpaid:
+                    //construct unpaid message
+                    status = "Unpaid. Payment due on " + inv.PaymentDueDate.ToString("dd/MM/yyyy");
+                    lblStatus.ForeColor = System.Drawing.Color.Orange;
+                    break;
+                case Invoice.PaidStatus.Overdue:
+                    //construct overdue message
+                    status = "Overdue. Payment was due on " + inv.PaymentDueDate.ToString("dd/MM/yyyy");
+                    lblStatus.ForeColor = System.Drawing.Color.Red;
+                    break;
             }
-            else
-            {
-                //construct unpaid message
-                status = "Unpaid. Payment due on " + inv.PaymentDate.ToString("dd/MM/yyyy");
-                lblStatus.ForeColor = System.Drawing.Color.Red;
-            }
-            //return the payment status message
+            
             return status;
         }
         
@@ -776,13 +818,26 @@ namespace UIAssignment2
             //create a new instance of the customer form
             CustomerForm editCustForm = new CustomerForm();
             //add a form closed handler
-            editCustForm.FormClosed += new FormClosedEventHandler(addCustForm_FormClosed);
+            editCustForm.FormClosed += new FormClosedEventHandler(editCustForm_FormClosed);
+            //remember customer being edited
+            //set the invoice number that will be edited
+            customerNumThatWasEdited = lbCustomers.SelectedValue.ToString();
             //set reference to parent form
             editCustForm.parent = this;
             //set purpose of form to edit
             editCustForm.purpose = "Edit";
             //show the form
             editCustForm.ShowDialog();
+        }
+
+        //actions to do after Customers dialog closes from adding a new customer
+        void editCustForm_FormClosed(object sender, FormClosedEventArgs e)
+        { 
+            lbCustomers.DataSource = getCustData();
+            //refresh the data
+            fillCustomerDetails();
+            //select the edited customer in the customer list box
+            lbCustomers.SelectedValue = customerNumThatWasEdited;
         }
 
       
@@ -813,6 +868,10 @@ namespace UIAssignment2
         /// <param name="invoiceNum">The invoice number ot search for</param>
         private void findInvoice(string invoiceNum)
         {
+
+            //clear the customer filter first otherwise customer may not be displayed when searching for invoice
+            tbSearchCust.Text = string.Empty;
+
             //flag if invoice found or not
             bool found = false;
 
